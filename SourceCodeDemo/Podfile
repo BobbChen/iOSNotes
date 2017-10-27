@@ -1,0 +1,7 @@
+platform :ios, '8.0'
+target "SourceCodeDemo" do
+pod 'AFNetworking'
+pod 'SDWebImage'
+pod 'YYWebImage'
+end
+
