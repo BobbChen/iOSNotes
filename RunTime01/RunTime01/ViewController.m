@@ -9,10 +9,10 @@
 #import "ViewController.h"
 #import "PersonOne.h"
 #import "PersonTwo.h"
-#import "UIButton+DelayButton.h"
 #import <objc/message.h>
 #import "UIImage+image.h"
 #import "NSObject+Property.h"
+#import "StatusOneModel.h"
 
 @interface ViewController ()
 @property (nonatomic, copy) NSString * demoStr;
@@ -33,9 +33,15 @@
      **/
     _demoStr = @"哈哈";
     NSLog(@"demoStr = %@",self.demoStr);
-    
+    // runtime方法交换
     [self methodExchange];
+    
+    // runtime分类添加属性
     [self dynamicProperty];
+    
+    // runtime字典转模型
+    [self runtimeDictTransitionModel];
+    
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
@@ -96,10 +102,15 @@
        在分类中使用@propertysh声明属性，只是将该属性添加到了该类的属性列表。即使自己声明了setter和getter方法也不会生成相应的成员变量su所以分类不能添加属性
      **/
     objc.name = @"haha";
-    
     NSLog(@"打印绑定的属性值--%@",objc.name);
-    
-    
-    
+}
+
+- (void)runtimeDictTransitionModel
+{
+    // 获取资源
+    NSString * filePath = [[NSBundle mainBundle] pathForResource:@"status1.plist" ofType:nil];
+    NSDictionary * dict = [NSDictionary dictionaryWithContentsOfFile:filePath];
+    StatusOneModel * model = [StatusOneModel modelWithDict:dict];
+    NSLog(@"KVC字典转模型:%@",model);
 }
 @end

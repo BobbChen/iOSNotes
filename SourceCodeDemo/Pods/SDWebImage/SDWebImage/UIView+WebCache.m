@@ -42,7 +42,7 @@ static char TAG_ACTIVITY_SHOW;
     // 根据这个key寻找相关的操作，同一url只有一次下载会被执行，其他的被取消()
     [self sd_cancelImageLoadOperationWithKey:validOperationKey];
     
-    /** 给UIimageview增加一个属性
+    /** 给UIView + WebCache分类增加一个属性
      @param object#> 关联者，一个对象
      @param key#> 获取被关联者的索引key
      @param value#> 被关联者，这里是一个NSUrl
@@ -80,7 +80,6 @@ static char TAG_ACTIVITY_SHOW;
                 if (!sself) {
                     return;
                 }
-                
                 // 图片是否使用了默认参数
                 if (image && (options & SDWebImageAvoidAutoSetImage) && completedBlock) {
                     // completedBlock传参
