@@ -1,0 +1,551 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		989EFE631FA704FD00D80393 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 989EFE621FA704FD00D80393 /* AppDelegate.m */; };
+		989EFE661FA704FD00D80393 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 989EFE651FA704FD00D80393 /* ViewController.m */; };
+		989EFE691FA704FD00D80393 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 989EFE671FA704FD00D80393 /* Main.storyboard */; };
+		989EFE6B1FA704FD00D80393 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 989EFE6A1FA704FD00D80393 /* Assets.xcassets */; };
+		989EFE6E1FA704FD00D80393 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 989EFE6C1FA704FD00D80393 /* LaunchScreen.storyboard */; };
+		989EFE711FA704FD00D80393 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 989EFE701FA704FD00D80393 /* main.m */; };
+		989EFE7B1FA704FD00D80393 /* GCD_MultithreadingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 989EFE7A1FA704FD00D80393 /* GCD_MultithreadingTests.m */; };
+		989EFE861FA704FD00D80393 /* GCD_MultithreadingUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 989EFE851FA704FD00D80393 /* GCD_MultithreadingUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		989EFE771FA704FD00D80393 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 989EFE561FA704FD00D80393 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 989EFE5D1FA704FD00D80393;
+			remoteInfo = "GCD Multithreading";
+		};
+		989EFE821FA704FD00D80393 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 989EFE561FA704FD00D80393 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 989EFE5D1FA704FD00D80393;
+			remoteInfo = "GCD Multithreading";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		989EFE5E1FA704FD00D80393 /* GCD Multithreading.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GCD Multithreading.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		989EFE611FA704FD00D80393 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		989EFE621FA704FD00D80393 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		989EFE641FA704FD00D80393 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		989EFE651FA704FD00D80393 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		989EFE681FA704FD00D80393 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		989EFE6A1FA704FD00D80393 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		989EFE6D1FA704FD00D80393 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		989EFE6F1FA704FD00D80393 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		989EFE701FA704FD00D80393 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		989EFE761FA704FD00D80393 /* GCD MultithreadingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GCD MultithreadingTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		989EFE7A1FA704FD00D80393 /* GCD_MultithreadingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCD_MultithreadingTests.m; sourceTree = "<group>"; };
+		989EFE7C1FA704FD00D80393 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		989EFE811FA704FD00D80393 /* GCD MultithreadingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GCD MultithreadingUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		989EFE851FA704FD00D80393 /* GCD_MultithreadingUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCD_MultithreadingUITests.m; sourceTree = "<group>"; };
+		989EFE871FA704FD00D80393 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		989EFE5B1FA704FD00D80393 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		989EFE731FA704FD00D80393 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		989EFE7E1FA704FD00D80393 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		989EFE551FA704FD00D80393 = {
+			isa = PBXGroup;
+			children = (
+				989EFE601FA704FD00D80393 /* GCD Multithreading */,
+				989EFE791FA704FD00D80393 /* GCD MultithreadingTests */,
+				989EFE841FA704FD00D80393 /* GCD MultithreadingUITests */,
+				989EFE5F1FA704FD00D80393 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		989EFE5F1FA704FD00D80393 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				989EFE5E1FA704FD00D80393 /* GCD Multithreading.app */,
+				989EFE761FA704FD00D80393 /* GCD MultithreadingTests.xctest */,
+				989EFE811FA704FD00D80393 /* GCD MultithreadingUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		989EFE601FA704FD00D80393 /* GCD Multithreading */ = {
+			isa = PBXGroup;
+			children = (
+				989EFE611FA704FD00D80393 /* AppDelegate.h */,
+				989EFE621FA704FD00D80393 /* AppDelegate.m */,
+				989EFE641FA704FD00D80393 /* ViewController.h */,
+				989EFE651FA704FD00D80393 /* ViewController.m */,
+				989EFE671FA704FD00D80393 /* Main.storyboard */,
+				989EFE6A1FA704FD00D80393 /* Assets.xcassets */,
+				989EFE6C1FA704FD00D80393 /* LaunchScreen.storyboard */,
+				989EFE6F1FA704FD00D80393 /* Info.plist */,
+				989EFE701FA704FD00D80393 /* main.m */,
+			);
+			path = "GCD Multithreading";
+			sourceTree = "<group>";
+		};
+		989EFE791FA704FD00D80393 /* GCD MultithreadingTests */ = {
+			isa = PBXGroup;
+			children = (
+				989EFE7A1FA704FD00D80393 /* GCD_MultithreadingTests.m */,
+				989EFE7C1FA704FD00D80393 /* Info.plist */,
+			);
+			path = "GCD MultithreadingTests";
+			sourceTree = "<group>";
+		};
+		989EFE841FA704FD00D80393 /* GCD MultithreadingUITests */ = {
+			isa = PBXGroup;
+			children = (
+				989EFE851FA704FD00D80393 /* GCD_MultithreadingUITests.m */,
+				989EFE871FA704FD00D80393 /* Info.plist */,
+			);
+			path = "GCD MultithreadingUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		989EFE5D1FA704FD00D80393 /* GCD Multithreading */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 989EFE8A1FA704FD00D80393 /* Build configuration list for PBXNativeTarget "GCD Multithreading" */;
+			buildPhases = (
+				989EFE5A1FA704FD00D80393 /* Sources */,
+				989EFE5B1FA704FD00D80393 /* Frameworks */,
+				989EFE5C1FA704FD00D80393 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "GCD Multithreading";
+			productName = "GCD Multithreading";
+			productReference = 989EFE5E1FA704FD00D80393 /* GCD Multithreading.app */;
+			productType = "com.apple.product-type.application";
+		};
+		989EFE751FA704FD00D80393 /* GCD MultithreadingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 989EFE8D1FA704FD00D80393 /* Build configuration list for PBXNativeTarget "GCD MultithreadingTests" */;
+			buildPhases = (
+				989EFE721FA704FD00D80393 /* Sources */,
+				989EFE731FA704FD00D80393 /* Frameworks */,
+				989EFE741FA704FD00D80393 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				989EFE781FA704FD00D80393 /* PBXTargetDependency */,
+			);
+			name = "GCD MultithreadingTests";
+			productName = "GCD MultithreadingTests";
+			productReference = 989EFE761FA704FD00D80393 /* GCD MultithreadingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		989EFE801FA704FD00D80393 /* GCD MultithreadingUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 989EFE901FA704FD00D80393 /* Build configuration list for PBXNativeTarget "GCD MultithreadingUITests" */;
+			buildPhases = (
+				989EFE7D1FA704FD00D80393 /* Sources */,
+				989EFE7E1FA704FD00D80393 /* Frameworks */,
+				989EFE7F1FA704FD00D80393 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				989EFE831FA704FD00D80393 /* PBXTargetDependency */,
+			);
+			name = "GCD MultithreadingUITests";
+			productName = "GCD MultithreadingUITests";
+			productReference = 989EFE811FA704FD00D80393 /* GCD MultithreadingUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		989EFE561FA704FD00D80393 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "陈博";
+				TargetAttributes = {
+					989EFE5D1FA704FD00D80393 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+					989EFE751FA704FD00D80393 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 989EFE5D1FA704FD00D80393;
+					};
+					989EFE801FA704FD00D80393 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 989EFE5D1FA704FD00D80393;
+					};
+				};
+			};
+			buildConfigurationList = 989EFE591FA704FD00D80393 /* Build configuration list for PBXProject "GCD Multithreading" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 989EFE551FA704FD00D80393;
+			productRefGroup = 989EFE5F1FA704FD00D80393 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				989EFE5D1FA704FD00D80393 /* GCD Multithreading */,
+				989EFE751FA704FD00D80393 /* GCD MultithreadingTests */,
+				989EFE801FA704FD00D80393 /* GCD MultithreadingUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		989EFE5C1FA704FD00D80393 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				989EFE6E1FA704FD00D80393 /* LaunchScreen.storyboard in Resources */,
+				989EFE6B1FA704FD00D80393 /* Assets.xcassets in Resources */,
+				989EFE691FA704FD00D80393 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		989EFE741FA704FD00D80393 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		989EFE7F1FA704FD00D80393 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		989EFE5A1FA704FD00D80393 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				989EFE661FA704FD00D80393 /* ViewController.m in Sources */,
+				989EFE711FA704FD00D80393 /* main.m in Sources */,
+				989EFE631FA704FD00D80393 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		989EFE721FA704FD00D80393 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				989EFE7B1FA704FD00D80393 /* GCD_MultithreadingTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		989EFE7D1FA704FD00D80393 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				989EFE861FA704FD00D80393 /* GCD_MultithreadingUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		989EFE781FA704FD00D80393 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 989EFE5D1FA704FD00D80393 /* GCD Multithreading */;
+			targetProxy = 989EFE771FA704FD00D80393 /* PBXContainerItemProxy */;
+		};
+		989EFE831FA704FD00D80393 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 989EFE5D1FA704FD00D80393 /* GCD Multithreading */;
+			targetProxy = 989EFE821FA704FD00D80393 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		989EFE671FA704FD00D80393 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				989EFE681FA704FD00D80393 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		989EFE6C1FA704FD00D80393 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				989EFE6D1FA704FD00D80393 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		989EFE881FA704FD00D80393 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		989EFE891FA704FD00D80393 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		989EFE8B1FA704FD00D80393 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "GCD Multithreading/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "chenbo.GCD-Multithreading";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		989EFE8C1FA704FD00D80393 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "GCD Multithreading/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "chenbo.GCD-Multithreading";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		989EFE8E1FA704FD00D80393 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "GCD MultithreadingTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "chenbo.GCD-MultithreadingTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GCD Multithreading.app/GCD Multithreading";
+			};
+			name = Debug;
+		};
+		989EFE8F1FA704FD00D80393 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "GCD MultithreadingTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "chenbo.GCD-MultithreadingTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GCD Multithreading.app/GCD Multithreading";
+			};
+			name = Release;
+		};
+		989EFE911FA704FD00D80393 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "GCD MultithreadingUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "chenbo.GCD-MultithreadingUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "GCD Multithreading";
+			};
+			name = Debug;
+		};
+		989EFE921FA704FD00D80393 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "GCD MultithreadingUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "chenbo.GCD-MultithreadingUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "GCD Multithreading";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		989EFE591FA704FD00D80393 /* Build configuration list for PBXProject "GCD Multithreading" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				989EFE881FA704FD00D80393 /* Debug */,
+				989EFE891FA704FD00D80393 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		989EFE8A1FA704FD00D80393 /* Build configuration list for PBXNativeTarget "GCD Multithreading" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				989EFE8B1FA704FD00D80393 /* Debug */,
+				989EFE8C1FA704FD00D80393 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		989EFE8D1FA704FD00D80393 /* Build configuration list for PBXNativeTarget "GCD MultithreadingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				989EFE8E1FA704FD00D80393 /* Debug */,
+				989EFE8F1FA704FD00D80393 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		989EFE901FA704FD00D80393 /* Build configuration list for PBXNativeTarget "GCD MultithreadingUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				989EFE911FA704FD00D80393 /* Debug */,
+				989EFE921FA704FD00D80393 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 989EFE561FA704FD00D80393 /* Project object */;
+}
