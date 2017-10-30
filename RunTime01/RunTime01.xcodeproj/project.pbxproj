@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		989EFE4B1FA6B13F00D80393 /* NSObject+Conversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 989EFE4A1FA6B13F00D80393 /* NSObject+Conversion.m */; };
+		989EFE4C1FA6B82400D80393 /* status1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98A93CB91FA2CA030064E418 /* status1.plist */; };
+		989EFE4D1FA6B82C00D80393 /* status2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98A93CBB1FA2CA030064E418 /* status2.plist */; };
+		989EFE4E1FA6B83500D80393 /* status3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98A93CBA1FA2CA030064E418 /* status3.plist */; };
+		989EFE511FA6C41000D80393 /* StatusTwoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 989EFE501FA6C41000D80393 /* StatusTwoModel.m */; };
+		989EFE541FA6D90900D80393 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 989EFE531FA6D90900D80393 /* User.m */; };
 		98A845FA1FA16FF700F13AF3 /* UIImage+image.m in Sources */ = {isa = PBXBuildFile; fileRef = 98A845F91FA16FF700F13AF3 /* UIImage+image.m */; };
 		98A845FD1FA174D100F13AF3 /* NSObject+Property.m in Sources */ = {isa = PBXBuildFile; fileRef = 98A845FC1FA174D100F13AF3 /* NSObject+Property.m */; };
 		98A93CC11FA2CD860064E418 /* StatusOneModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 98A93CC01FA2CD860064E418 /* StatusOneModel.m */; };
@@ -40,6 +46,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		989EFE491FA6B13F00D80393 /* NSObject+Conversion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Conversion.h"; sourceTree = "<group>"; };
+		989EFE4A1FA6B13F00D80393 /* NSObject+Conversion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Conversion.m"; sourceTree = "<group>"; };
+		989EFE4F1FA6C41000D80393 /* StatusTwoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusTwoModel.h; sourceTree = "<group>"; };
+		989EFE501FA6C41000D80393 /* StatusTwoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatusTwoModel.m; sourceTree = "<group>"; };
+		989EFE521FA6D90900D80393 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		989EFE531FA6D90900D80393 /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		98A845F81FA16FF700F13AF3 /* UIImage+image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+image.h"; sourceTree = "<group>"; };
 		98A845F91FA16FF700F13AF3 /* UIImage+image.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+image.m"; sourceTree = "<group>"; };
 		98A845FB1FA174D100F13AF3 /* NSObject+Property.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Property.h"; sourceTree = "<group>"; };
@@ -111,6 +123,12 @@
 			children = (
 				98A93CBF1FA2CD860064E418 /* StatusOneModel.h */,
 				98A93CC01FA2CD860064E418 /* StatusOneModel.m */,
+				989EFE491FA6B13F00D80393 /* NSObject+Conversion.h */,
+				989EFE4A1FA6B13F00D80393 /* NSObject+Conversion.m */,
+				989EFE4F1FA6C41000D80393 /* StatusTwoModel.h */,
+				989EFE501FA6C41000D80393 /* StatusTwoModel.m */,
+				989EFE521FA6D90900D80393 /* User.h */,
+				989EFE531FA6D90900D80393 /* User.m */,
 			);
 			path = "3.字典转模型";
 			sourceTree = "<group>";
@@ -301,6 +319,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				989EFE4E1FA6B83500D80393 /* status3.plist in Resources */,
+				989EFE4D1FA6B82C00D80393 /* status2.plist in Resources */,
+				989EFE4C1FA6B82400D80393 /* status1.plist in Resources */,
 				98B54A381FA0210F002DF9A2 /* LaunchScreen.storyboard in Resources */,
 				98B54A351FA0210F002DF9A2 /* Assets.xcassets in Resources */,
 				98B54A331FA0210F002DF9A2 /* Main.storyboard in Resources */,
@@ -329,10 +350,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				98B54A301FA0210F002DF9A2 /* ViewController.m in Sources */,
+				989EFE4B1FA6B13F00D80393 /* NSObject+Conversion.m in Sources */,
 				98A845FA1FA16FF700F13AF3 /* UIImage+image.m in Sources */,
 				98A93CC11FA2CD860064E418 /* StatusOneModel.m in Sources */,
 				98B54A3B1FA0210F002DF9A2 /* main.m in Sources */,
 				98B54A2D1FA0210F002DF9A2 /* AppDelegate.m in Sources */,
+				989EFE541FA6D90900D80393 /* User.m in Sources */,
+				989EFE511FA6C41000D80393 /* StatusTwoModel.m in Sources */,
 				98A845FD1FA174D100F13AF3 /* NSObject+Property.m in Sources */,
 				98B54A621FA0219C002DF9A2 /* PersonTwo.m in Sources */,
 				98B54A5F1FA02183002DF9A2 /* PersonOne.m in Sources */,

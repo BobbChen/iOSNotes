@@ -13,6 +13,9 @@
 #import "UIImage+image.h"
 #import "NSObject+Property.h"
 #import "StatusOneModel.h"
+#import "NSObject+Conversion.h"
+#import "StatusTwoModel.h"
+
 
 @interface ViewController ()
 @property (nonatomic, copy) NSString * demoStr;
@@ -41,6 +44,9 @@
     
     // runtime字典转模型
     [self runtimeDictTransitionModel];
+    
+    [self runtimeDictTransitionNestedModel];
+    
     
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -104,13 +110,33 @@
     objc.name = @"haha";
     NSLog(@"打印绑定的属性值--%@",objc.name);
 }
+- (void)runtimeDictTransitionNestedModel
+{
+    NSString * filePath = [[NSBundle mainBundle] pathForResource:@"status2" ofType:@"plist"];
+    NSDictionary * dict = [NSDictionary dictionaryWithContentsOfFile:filePath];
+    StatusTwoModel * model = [StatusTwoModel modelWithNestedDict:dict];
+    
+    
+    NSLog(@"嵌套数据转模型:%@",model.user.name);
+    
+    
+    
+    
+    
+}
 
 - (void)runtimeDictTransitionModel
 {
     // 获取资源
-    NSString * filePath = [[NSBundle mainBundle] pathForResource:@"status1.plist" ofType:nil];
+    NSString * filePath = [[NSBundle mainBundle] pathForResource:@"status1" ofType:@"plist"];
     NSDictionary * dict = [NSDictionary dictionaryWithContentsOfFile:filePath];
-    StatusOneModel * model = [StatusOneModel modelWithDict:dict];
-    NSLog(@"KVC字典转模型:%@",model);
+    
+    // 传统kvc方法
+//    StatusOneModel * model = [StatusOneModel modelWithDict:dict];
+    
+    // runtime 方法
+    StatusOneModel * models = [StatusOneModel modelWithDatadict:dict];
+    NSLog(@" --- runtime字典转模型:%@",models.attitudes_count);
+    
 }
 @end
