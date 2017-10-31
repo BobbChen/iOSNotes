@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self dispatch_barrier_async_Demo];
+    [self dispatch_Semaphore_demo];
     
 //    [self Note1];
 }
@@ -73,7 +73,6 @@
         [NSThread sleepForTimeInterval:2.f];
         NSLog(@"job3 out");
     });
-    
     dispatch_async(queue2, ^{
         NSLog(@"job2 in");
         [NSThread sleepForTimeInterval:2.f];
@@ -92,18 +91,15 @@
     
     /**
      获取从dispatch_time_no到delta指定的时间后的时间
-
-     @param dispatch_time_no 指定的时间开始
-     @param delta 指定的毫微秒时间
-     @return 指定的时间后的时间
+     dispatch_time_no 指定的时间开始
+     delta 指定的毫微秒时间
+     指定的时间后的时间
      NSEC_PER_SEC : 毫微秒
      ull : C语言的数值字面量，显示表示类型
      3ull * NSEC_PER_SEC : 3秒后
      150ull * NSEC_PER_MSEC : 150毫秒后
      */
     dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 3ull * NSEC_PER_SEC);
-    
-    
     
     /**
      指定时间后执行处理
@@ -146,7 +142,6 @@
     
     dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 1ull * NSEC_PER_SEC);
     
-    
     long result =  dispatch_group_wait(group, time);
     if (result == 0) {
         // 在指定的时间内group完成了全部操作
@@ -183,15 +178,137 @@
         NSLog(@"读取资源");
     });
     
+}
+
+#pragma mark - dispathc_sync
+- (void)dispatch_sync_demo
+{
+    // dispatch_sync同步将队列加入到线程中，会等待block执行完成之后再执行接下来的程序，简化版的dispatch_group_wait,dispatch_sync有可能引起死锁
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        // 这种情况下会发生死锁
+        NSLog(@"产生了死锁！");
+    });
+    
+    // dispatch_async将队列异步加入线程，不会等待block的结束就会接着执行以后的程序
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+    });
+}
+#pragma mark - dispatch_apply
+- (void)dispatch_apply_demo
+{
+    //
+    dispatch_queue_t queue = dispatch_queue_create(NULL, DISPATCH_QUEUE_CONCURRENT);
+    // 按照指定的次数将指定的block追加到指定的queue中，会等待全部执行完毕之后再执行以后的程序
+    dispatch_apply(10, queue, ^(size_t index) {
+        NSLog(@"index = %ld",index);
+    });
+    NSLog(@"dispatch_apply执行完毕！");
+    
+}
+#pragma mark - dispatch_suspend/dispatch_resume
+- (void)dispatch_supend_demo
+{
+    //创建DISPATCH_QUEUE_SERIAL队列
+    dispatch_queue_t queue1 = dispatch_queue_create("com.iOSChengXuYuan.queue1", 0);
+    dispatch_queue_t queue2 = dispatch_queue_create("com.iOSChengXuYuan.queue2", 0);
+    
+    //创建group
+    dispatch_group_t group = dispatch_group_create();
+    
+    //异步执行任务
+    dispatch_async(queue1, ^{
+        NSLog(@"任务 1 ： queue 1...");
+        sleep(1);
+        NSLog(@":white_check_mark:完成任务 1");
+    });
+    
+    dispatch_async(queue2, ^{
+        NSLog(@"任务 1 ： queue 2...");
+        sleep(1);
+        NSLog(@":white_check_mark:完成任务 2");
+    });
+    
+    //将队列加入到group
+    dispatch_group_async(group, queue1, ^{
+        NSLog(@":no_entry_sign:正在暂停 1");
+        dispatch_suspend(queue1);
+    });
+    
+    dispatch_group_async(group, queue2, ^{
+        NSLog(@":no_entry_sign:正在暂停 2");
+        dispatch_suspend(queue2);
+    });
+    
+    //等待两个queue执行完毕后再执行
+    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+    NSLog(@"＝＝＝＝＝＝＝等待两个queue完成, 再往下进行...");
+    
+    //异步执行任务
+    dispatch_async(queue1, ^{
+        NSLog(@"任务 2 ： queue 1");
+    });
+    dispatch_async(queue2, ^{
+        NSLog(@"任务 2 ： queue 2");
+    });
+    
+    //在这里将这两个队列重新恢复
+    dispatch_resume(queue1);
+    dispatch_resume(queue2);
     
 }
 
+#pragma mark - Dispatch_Semaphore
+- (void)dispatch_Semaphore_demo
+{
+    // 信号量 2表示最多访问资源的线程数
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(2);
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    // 1
+    dispatch_async(queue, ^{
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        NSLog(@"任务1");
+        sleep(1);
+        NSLog(@"任务1完成");
+        dispatch_semaphore_signal(semaphore);
+    });
+    
+    // 2
+    dispatch_async(queue, ^{
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        NSLog(@"任务2");
+        sleep(1);
+        NSLog(@"任务2完成");
+        dispatch_semaphore_signal(semaphore);
 
+    });
 
+    
+    //
+    dispatch_async(queue, ^{
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        NSLog(@"任务3");
+        sleep(1);
+        NSLog(@"任务3完成");
+        dispatch_semaphore_signal(semaphore);
+    });
+    
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+#pragma mark - Dispatch I/O
+- (void)dispatch_io_demo
+{
+    // 指定发生错误的block
+    //dispatch_io_create(<#dispatch_io_type_t type#>, <#dispatch_fd_t fd#>, <#dispatch_queue_t  _Nonnull queue#>, <#^(int error)cleanup_handler#>)
+    
+    // 设定一次读取的大小
+// dispatch_io_set_low_water(<#dispatch_io_t  _Nonnull channel#>, <#size_t low_water#>)
+    
+    
+    // 开始读取指定的分割文件读取结束会通过block将data传递
+//    dispatch_io_read(<#dispatch_io_t  _Nonnull channel#>, <#off_t offset#>, <#size_t length#>, <#dispatch_queue_t  _Nonnull queue#>, <#^(bool done, dispatch_data_t  _Nullable data, int error)io_handler#>)
+    
+    
 }
 
 
