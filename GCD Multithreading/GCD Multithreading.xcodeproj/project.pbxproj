@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9809555A1FA86A4500719198 /* NSThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 980955591FA86A4500719198 /* NSThreadViewController.m */; };
 		989EFE631FA704FD00D80393 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 989EFE621FA704FD00D80393 /* AppDelegate.m */; };
 		989EFE661FA704FD00D80393 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 989EFE651FA704FD00D80393 /* ViewController.m */; };
 		989EFE691FA704FD00D80393 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 989EFE671FA704FD00D80393 /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 		989EFE711FA704FD00D80393 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 989EFE701FA704FD00D80393 /* main.m */; };
 		989EFE7B1FA704FD00D80393 /* GCD_MultithreadingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 989EFE7A1FA704FD00D80393 /* GCD_MultithreadingTests.m */; };
 		989EFE861FA704FD00D80393 /* GCD_MultithreadingUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 989EFE851FA704FD00D80393 /* GCD_MultithreadingUITests.m */; };
+		98C91CDA1FA9AE8D00B456C7 /* NSOperationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C91CD91FA9AE8D00B456C7 /* NSOperationViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		980955581FA86A4500719198 /* NSThreadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSThreadViewController.h; sourceTree = "<group>"; };
+		980955591FA86A4500719198 /* NSThreadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSThreadViewController.m; sourceTree = "<group>"; };
 		989EFE5E1FA704FD00D80393 /* GCD Multithreading.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GCD Multithreading.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		989EFE611FA704FD00D80393 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		989EFE621FA704FD00D80393 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -51,6 +55,8 @@
 		989EFE811FA704FD00D80393 /* GCD MultithreadingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GCD MultithreadingUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		989EFE851FA704FD00D80393 /* GCD_MultithreadingUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCD_MultithreadingUITests.m; sourceTree = "<group>"; };
 		989EFE871FA704FD00D80393 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		98C91CD81FA9AE8D00B456C7 /* NSOperationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSOperationViewController.h; sourceTree = "<group>"; };
+		98C91CD91FA9AE8D00B456C7 /* NSOperationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSOperationViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +111,10 @@
 				989EFE621FA704FD00D80393 /* AppDelegate.m */,
 				989EFE641FA704FD00D80393 /* ViewController.h */,
 				989EFE651FA704FD00D80393 /* ViewController.m */,
+				98C91CD81FA9AE8D00B456C7 /* NSOperationViewController.h */,
+				98C91CD91FA9AE8D00B456C7 /* NSOperationViewController.m */,
+				980955581FA86A4500719198 /* NSThreadViewController.h */,
+				980955591FA86A4500719198 /* NSThreadViewController.m */,
 				989EFE671FA704FD00D80393 /* Main.storyboard */,
 				989EFE6A1FA704FD00D80393 /* Assets.xcassets */,
 				989EFE6C1FA704FD00D80393 /* LaunchScreen.storyboard */,
@@ -266,8 +276,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				989EFE661FA704FD00D80393 /* ViewController.m in Sources */,
+				98C91CDA1FA9AE8D00B456C7 /* NSOperationViewController.m in Sources */,
 				989EFE711FA704FD00D80393 /* main.m in Sources */,
 				989EFE631FA704FD00D80393 /* AppDelegate.m in Sources */,
+				9809555A1FA86A4500719198 /* NSThreadViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
