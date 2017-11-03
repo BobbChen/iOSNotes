@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "NSThreadViewController.h"
+#import "NSOperationViewController.h"
 
 @interface AppDelegate ()
 
@@ -19,7 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.rootViewController = [[NSThreadViewController alloc] init];
+    self.window.rootViewController = [[NSOperationViewController alloc] init];
     [self.window makeKeyAndVisible];
     return YES;
 }
