@@ -19,8 +19,7 @@
     
     /*
      **/
-    [self NSOperationQueue_demo];
-    
+    [self NSOperationQueuesuspended_demo];
     
     
 }
@@ -69,24 +68,99 @@
         NSLog(@"operation3-1-线程-%@",[NSThread currentThread]);
     }];
     
-    // 将operation放到queue中
+    /* 将operation放到queue中
+     NSOperationQueue包含两种队列:主队列和其它队列
+     **/
     NSOperationQueue * queue = [[NSOperationQueue alloc] init];
+    
     [queue addOperation:operation1];
     [queue addOperation:operation2];
     [queue addOperation:operation3];
+    
+    /* maxConcurrentOperationCount 最大并发数
+       maxConcurrentOperationCount 默认为-1.并发执行，不进行限制
+        maxConcurrentOperationCount = 1，串行执行，开启一条子线程
+       maxConcurrentOperationCount = 0,不执行队列任务
+     maxConcurrentOperationCount > 1，并发执行，不会超过系统的限制
+     **/
+    queue.maxConcurrentOperationCount = 1;
 }
+#pragma mark - 操作依赖
+- (void)Dependency_demo
+{
+    NSOperationQueue * queue = [[NSOperationQueue alloc] init];
+    NSBlockOperation * operation1 = [NSBlockOperation blockOperationWithBlock:^{
+        NSLog(@"任务1");
+    }];
+    NSBlockOperation * operation2 = [NSBlockOperation blockOperationWithBlock:^{
+        NSLog(@"任务2");
+    }];
+    
+    // operation之间的相互依赖会发生死锁
+    [operation2 addDependency:operation1];
+    
+//    [operation1 addDependency:operation2];
+    [queue addOperation:operation1];
+    [queue addOperation:operation2];
+
+}
+#pragma mark - 任务的取消
+- (void)operationCacncel_demo
+{
+    NSBlockOperation * operation1 = [NSBlockOperation blockOperationWithBlock:^{
+        NSLog(@"任务1");
+    }];
+    NSBlockOperation * operation2 = [NSBlockOperation blockOperationWithBlock:^{
+        NSLog(@"任务2");
+    }];
+    
+    NSOperationQueue * queue = [[NSOperationQueue alloc] init];
+    queue.maxConcurrentOperationCount = 2; // 并发
+    [queue addOperation:operation1]; // 将任务添加到queue之后会自动调用start
+    [queue addOperation:operation2];
+    
+    
+    // 取消任务1
+    [operation1 cancel];
+    // 取消整个队列的任务
+    [queue cancelAllOperations];
+    
+}
+#pragma mark - NSOperationQueue的暂停和恢复
+- (void)NSOperationQueuesuspended_demo
+{
+    NSBlockOperation * operation1 = [NSBlockOperation blockOperationWithBlock:^{
+        NSLog(@"任务1");
+    }];
+    NSBlockOperation * operation2 = [NSBlockOperation blockOperationWithBlock:^{
+        NSLog(@"任务2");
+    }];
+    
+    NSOperationQueue * queue = [[NSOperationQueue alloc] init];
+    
+    // 暂停queue中的所有operation
+    queue.suspended = true;
+    
+    // 恢复queue中所有的operation
+    //queue.suspended = false;
+
+    [queue addOperation:operation1]; // 将任务添加到queue之后会自动调用start
+    [queue addOperation:operation2];
+    
+
+}
+
+
+#pragma mark - 任务组
 - (void)OperationQueueTest1
 {
     NSLog(@"OperationQueueTest1- %@",[NSThread currentThread]);
 }
+
 - (void)OperationQueueTest2
 {
     NSLog(@"OperationQueueTest2- %@",[NSThread currentThread]);
-
-    
 }
-
-
 
 - (void)invocationOperationAction
 {
