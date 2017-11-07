@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		989BE6581FB163760064C486 /* NetApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 989BE6571FB163760064C486 /* NetApiClient.m */; };
+		989BE65B1FB163970064C486 /* NetDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 989BE65A1FB163970064C486 /* NetDataManager.m */; };
 		98F3C7F41F53AAB500C69BE1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F3C7F31F53AAB500C69BE1 /* main.m */; };
 		98F3C7F71F53AAB500C69BE1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F3C7F61F53AAB500C69BE1 /* AppDelegate.m */; };
 		98F3C7FA1F53AAB500C69BE1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F3C7F91F53AAB500C69BE1 /* ViewController.m */; };
@@ -39,6 +41,10 @@
 		0DEF190B22D735CB885F9C1C /* Pods-SourceCodeDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SourceCodeDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SourceCodeDemo/Pods-SourceCodeDemo.release.xcconfig"; sourceTree = "<group>"; };
 		1C505E1D2370109B8DCA37E1 /* Pods-SourceCodeDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SourceCodeDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SourceCodeDemo/Pods-SourceCodeDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		81A6166C0A4B3B0BE620D046 /* libPods-SourceCodeDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SourceCodeDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		989BE6561FB163760064C486 /* NetApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetApiClient.h; sourceTree = "<group>"; };
+		989BE6571FB163760064C486 /* NetApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetApiClient.m; sourceTree = "<group>"; };
+		989BE6591FB163970064C486 /* NetDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetDataManager.h; sourceTree = "<group>"; };
+		989BE65A1FB163970064C486 /* NetDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetDataManager.m; sourceTree = "<group>"; };
 		98F3C7EF1F53AAB500C69BE1 /* SourceCodeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SourceCodeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98F3C7F31F53AAB500C69BE1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		98F3C7F51F53AAB500C69BE1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -108,6 +114,10 @@
 		98F3C7F11F53AAB500C69BE1 /* SourceCodeDemo */ = {
 			isa = PBXGroup;
 			children = (
+				989BE6591FB163970064C486 /* NetDataManager.h */,
+				989BE65A1FB163970064C486 /* NetDataManager.m */,
+				989BE6561FB163760064C486 /* NetApiClient.h */,
+				989BE6571FB163760064C486 /* NetApiClient.m */,
 				98F3C7F51F53AAB500C69BE1 /* AppDelegate.h */,
 				98F3C7F61F53AAB500C69BE1 /* AppDelegate.m */,
 				98F3C7F81F53AAB500C69BE1 /* ViewController.h */,
@@ -332,13 +342,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SourceCodeDemo-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -349,7 +362,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				98F3C7FA1F53AAB500C69BE1 /* ViewController.m in Sources */,
+				989BE6581FB163760064C486 /* NetApiClient.m in Sources */,
 				98F3C7F71F53AAB500C69BE1 /* AppDelegate.m in Sources */,
+				989BE65B1FB163970064C486 /* NetDataManager.m in Sources */,
 				98F3C7F41F53AAB500C69BE1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -584,6 +599,7 @@
 				98F3C81E1F53AAB500C69BE1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		98F3C81F1F53AAB500C69BE1 /* Build configuration list for PBXNativeTarget "SourceCodeDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -592,6 +608,7 @@
 				98F3C8211F53AAB500C69BE1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		98F3C8221F53AAB500C69BE1 /* Build configuration list for PBXNativeTarget "SourceCodeDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -600,6 +617,7 @@
 				98F3C8241F53AAB500C69BE1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

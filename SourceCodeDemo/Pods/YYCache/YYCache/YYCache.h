@@ -49,6 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, readonly) YYDiskCache *diskCache;
 
 /**
+ 通过一个字符串名称创建一个YYCache实例，相同名称的YYCache对象会使缓存不稳定
  Create a new instance with the specified name.
  Multiple instances with the same name will make the cache unstable.
  
@@ -101,6 +102,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///=============================================================================
 
 /**
+ 可能会阻塞调用线程知道文件读取完毕
  Returns a boolean value that indicates whether a given key is in cache.
  This method may blocks the calling thread until file read finished.
  
@@ -110,6 +112,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)containsObjectForKey:(NSString *)key;
 
 /**
+ 后台线程完成缓存数据的查询
  Returns a boolean value with the block that indicates whether a given key is in cache.
  This method returns immediately and invoke the passed block in background queue
  when the operation finished.
@@ -120,6 +123,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)containsObjectForKey:(NSString *)key withBlock:(nullable void(^)(NSString *key, BOOL contains))block;
 
 /**
+ 查询是否包含与键关联的值，可能会阻塞当前线程
  Returns the value associated with a given key.
  This method may blocks the calling thread until file read finished.
  

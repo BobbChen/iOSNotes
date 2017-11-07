@@ -17,6 +17,8 @@
 
 - (instancetype) init {
     NSLog(@"Use \"initWithName\" or \"initWithPath\" to create YYCache instance.");
+    
+    
     return [self initWithPath:@""];
 }
 
@@ -51,12 +53,14 @@
 }
 
 - (BOOL)containsObjectForKey:(NSString *)key {
+    
+    // 判断磁盘缓存和内存缓存是否包存在这个key的缓存内容
     return [_memoryCache containsObjectForKey:key] || [_diskCache containsObjectForKey:key];
 }
 
 - (void)containsObjectForKey:(NSString *)key withBlock:(void (^)(NSString *key, BOOL contains))block {
     if (!block) return;
-    
+    // 先检查内存缓存如果内存缓存没有再检查磁盘缓存
     if ([_memoryCache containsObjectForKey:key]) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             block(key, YES);

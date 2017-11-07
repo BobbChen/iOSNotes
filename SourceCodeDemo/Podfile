@@ -3,5 +3,7 @@ target "SourceCodeDemo" do
 pod 'AFNetworking'
 pod 'SDWebImage'
 pod 'YYWebImage'
+pod 'YYCache'
+
 end
 

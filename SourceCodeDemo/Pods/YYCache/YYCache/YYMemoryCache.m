@@ -16,21 +16,43 @@
 #import <pthread.h>
 
 
+/**
+ static inline 内联函数
+ 与宏对比:
+    1.不需要预编译
+    2.调用内联函数的时候会检查参数的类型，保证调用的正确性
+ 
+ */
 static inline dispatch_queue_t YYMemoryCacheGetReleaseQueue() {
     return dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
 }
+/* LRU算法-淘汰算法
+   1.新加的数据放到链表的头部
+   2.被访问的数据移动到链表头部
+   3.链表占满，清除链表尾部的数据
+ **/
 
 /**
- A node in linked map.
+ A node in linked map 双向链表的结点
  Typically, you should not use this class directly.
  */
 @interface _YYLinkedMapNode : NSObject {
-    @package
+    @package // 包 表示属性的访问程度
+    // 指向上一个结点
     __unsafe_unretained _YYLinkedMapNode *_prev; // retained by dic
+    
+    // 指向下一个结点
     __unsafe_unretained _YYLinkedMapNode *_next; // retained by dic
+    // 缓存的key
     id _key;
+    
+    // 缓存的value
     id _value;
+    
+    // 内存消耗
     NSUInteger _cost;
+    
+    // 缓存时间
     NSTimeInterval _time;
 }
 @end
@@ -40,6 +62,7 @@ static inline dispatch_queue_t YYMemoryCacheGetReleaseQueue() {
 
 
 /**
+ 链表
  A linked map used by YYMemoryCache.
  It's not thread-safe and does not validate the parameters.
  
@@ -47,12 +70,20 @@ static inline dispatch_queue_t YYMemoryCacheGetReleaseQueue() {
  */
 @interface _YYLinkedMap : NSObject {
     @package
+    // 保存结点
     CFMutableDictionaryRef _dic; // do not set object directly
+    // 总的缓存消耗
     NSUInteger _totalCost;
     NSUInteger _totalCount;
+    // 头结点
     _YYLinkedMapNode *_head; // MRU, do not change it directly
+    // 尾结点
     _YYLinkedMapNode *_tail; // LRU, do not change it directly
+    
+    // 是否在主线程释放
     BOOL _releaseOnMainThread;
+    
+    // 是否在异步线程释放
     BOOL _releaseAsynchronously;
 }
 
@@ -90,6 +121,7 @@ static inline dispatch_queue_t YYMemoryCacheGetReleaseQueue() {
     CFRelease(_dic);
 }
 
+// 将新增的数据结点移动到头部
 - (void)insertNodeAtHead:(_YYLinkedMapNode *)node {
     CFDictionarySetValue(_dic, (__bridge const void *)(node->_key), (__bridge const void *)(node));
     _totalCost += node->_cost;
@@ -103,6 +135,7 @@ static inline dispatch_queue_t YYMemoryCacheGetReleaseQueue() {
     }
 }
 
+// 将被访问的数据结点移动到链表的头部
 - (void)bringNodeToHead:(_YYLinkedMapNode *)node {
     if (_head == node) return;
     
@@ -119,6 +152,7 @@ static inline dispatch_queue_t YYMemoryCacheGetReleaseQueue() {
     _head = node;
 }
 
+// 移除结点
 - (void)removeNode:(_YYLinkedMapNode *)node {
     CFDictionaryRemoveValue(_dic, (__bridge const void *)(node->_key));
     _totalCost -= node->_cost;
@@ -129,6 +163,7 @@ static inline dispatch_queue_t YYMemoryCacheGetReleaseQueue() {
     if (_tail == node) _tail = node->_prev;
 }
 
+// 移除尾结点
 - (_YYLinkedMapNode *)removeTailNode {
     if (!_tail) return nil;
     _YYLinkedMapNode *tail = _tail;
@@ -144,14 +179,19 @@ static inline dispatch_queue_t YYMemoryCacheGetReleaseQueue() {
     return tail;
 }
 
+// 移除链表上所有的结点
 - (void)removeAll {
     _totalCost = 0;
     _totalCount = 0;
     _head = nil;
     _tail = nil;
+    // 从保存结点的字典中找到键值对的个数，如果链表中还存在数据结点进行清空结点
     if (CFDictionaryGetCount(_dic) > 0) {
         CFMutableDictionaryRef holder = _dic;
+        
+        // 清空结点字典
         _dic = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+        
         
         if (_releaseAsynchronously) {
             dispatch_queue_t queue = _releaseOnMainThread ? dispatch_get_main_queue() : YYMemoryCacheGetReleaseQueue();
@@ -173,9 +213,9 @@ static inline dispatch_queue_t YYMemoryCacheGetReleaseQueue() {
 
 
 @implementation YYMemoryCache {
-    pthread_mutex_t _lock;
-    _YYLinkedMap *_lru;
-    dispatch_queue_t _queue;
+    pthread_mutex_t _lock; // 互斥锁
+    _YYLinkedMap *_lru; // 双向链表
+    dispatch_queue_t _queue; // 队列
 }
 
 - (void)_trimRecursively {
@@ -399,6 +439,7 @@ static inline dispatch_queue_t YYMemoryCacheGetReleaseQueue() {
     pthread_mutex_lock(&_lock);
     _YYLinkedMapNode *node = CFDictionaryGetValue(_lru->_dic, (__bridge const void *)(key));
     if (node) {
+        // 将刚刚被访问过的node移动到表头
         node->_time = CACurrentMediaTime();
         [_lru bringNodeToHead:node];
     }
@@ -410,13 +451,19 @@ static inline dispatch_queue_t YYMemoryCacheGetReleaseQueue() {
     [self setObject:object forKey:key withCost:0];
 }
 
+// 添加缓存
 - (void)setObject:(id)object forKey:(id)key withCost:(NSUInteger)cost {
     if (!key) return;
+    // 只有key没有value清空该缓存
     if (!object) {
         [self removeObjectForKey:key];
         return;
     }
+    
+    // 互斥锁-数据操作进行加锁
     pthread_mutex_lock(&_lock);
+    
+    // 通过传入的key查找缓存数据
     _YYLinkedMapNode *node = CFDictionaryGetValue(_lru->_dic, (__bridge const void *)(key));
     NSTimeInterval now = CACurrentMediaTime();
     if (node) {
@@ -424,21 +471,27 @@ static inline dispatch_queue_t YYMemoryCacheGetReleaseQueue() {
         _lru->_totalCost += cost;
         node->_cost = cost;
         node->_time = now;
-        node->_value = object;
+        node->_value = object; // 更新该结点的数据域
+        // 将结点位置移动到链表的最前端
         [_lru bringNodeToHead:node];
     } else {
+        // 如果通过key不能找到缓存的数据，新建结点
         node = [_YYLinkedMapNode new];
         node->_cost = cost;
         node->_time = now;
         node->_key = key;
         node->_value = object;
+        // 插入新的数据结点到表头
         [_lru insertNodeAtHead:node];
     }
+    
+    // 判断当前链表的缓存是否超出限定值，如果超出进行处理
     if (_lru->_totalCost > _costLimit) {
         dispatch_async(_queue, ^{
             [self trimToCost:_costLimit];
         });
     }
+    // 添加数据的键值对超出限制，进行移除
     if (_lru->_totalCount > _countLimit) {
         _YYLinkedMapNode *node = [_lru removeTailNode];
         if (_lru->_releaseAsynchronously) {

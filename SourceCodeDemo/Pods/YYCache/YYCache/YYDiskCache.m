@@ -205,6 +205,7 @@ static void _YYDiskCacheSetGlobal(YYDiskCache *cache) {
     [self _trimRecursively];
     _YYDiskCacheSetGlobal(self);
     
+    // UIApplicationWillTerminateNotification应用程序将要被杀死的时候调用
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_appWillBeTerminated) name:UIApplicationWillTerminateNotification object:nil];
     return self;
 }

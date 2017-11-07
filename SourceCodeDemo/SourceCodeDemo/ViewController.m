@@ -7,8 +7,11 @@
 //
 
 #import "ViewController.h"
+#import <AFNetworking.h>
+#import <YYCache.h>
 #import <UIImageView+WebCache.h>
 #import <UIImageView+YYWebImage.h>
+#import "NetDataManager.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -25,6 +28,8 @@
     tableview.rowHeight = 80;
     [self.view addSubview:tableview];
     
+    //
+    [self YYCache_demo];
     
     
     
@@ -33,7 +38,33 @@
     
     
 }
-- (void)demoOne{
+#pragma mark - YYCache
+- (void)YYCache_demo
+{
+    // 使用YYCache进行缓存先检查是否有缓存数据，如果有直接调用，如果没有再进行网络请求
+    NSString * cycleKey = @"cycleKey";
+    YYCache * cache = [YYCache cacheWithName:@"YYCache_demo"];
+    if([cache containsObjectForKey:cycleKey]){
+        // 缓存存在从缓存中获取数据
+        [cache objectForKey:cycleKey withBlock:^(NSString * _Nonnull key, id<NSCoding>  _Nonnull object) {
+            NSLog(@"从缓存中获取的数据--%@",object);
+        }];
+        
+    }else{
+        [[NetDataManager shareManager] requestGoodsDescDataWithBlock:^(NSArray * cycleArray, NSArray * ouzhouArray, NSError * error) {
+            NSLog(@"网络获取的数据---%@",cycleArray);
+            
+        }];
+    }
+    
+    
+    
+    
+    
+}
+
+#pragma mark - SDWebImage
+- (void)SDWebImage_demo{
     
     UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
     
@@ -48,16 +79,10 @@
     NSURL * picUrl = [NSURL URLWithString:@"http://ocgjuvwhb.bkt.clouddn.com/IMG_0223.PNG"];
     
     [imageViewTwo sd_setImageWithURL:picUrl completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        NSLog(@"获取的方式是--%ld",(long)cacheType);
     }];
     
     [imageView sd_setImageWithURL:picUrl completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        NSLog(@"获取的方式是--%ld",(long)cacheType);
     }];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 
@@ -71,7 +96,6 @@
     [cell.contentView addSubview:imageViewTwo];
     NSURL * picUrl = [NSURL URLWithString:@"http://ocgjuvwhb.bkt.clouddn.com/IMG_0223.PNG"];
     [imageViewTwo sd_setImageWithURL:picUrl completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        NSLog(@"获取的方式是--%ld",(long)cacheType);
     }];
     
     return cell;

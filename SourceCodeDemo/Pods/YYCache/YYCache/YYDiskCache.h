@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) NSString *path;
 
 /**
+  如果数据量大于20Kb会被存储为文件，否则将会存储在sqlite
  If the object's data size (in bytes) is larger than this value, then object will
  be stored as a file, otherwise the object will be stored in sqlite.
  
@@ -71,6 +72,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, copy) id (^customUnarchiveBlock)(NSData *data);
 
 /**
+ 当数据过大需要被保存成文件的时候这个会被用来生成指定的文件名称，如果没有则用md5加密后作为文件的名称
  When an object needs to be saved as a file, this block will be invoked to generate
  a file name for a specified key. If the block is nil, the cache use md5(key) as 
  default file name.
@@ -87,6 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///=============================================================================
 
 /**
+ 最大缓存数量
  The maximum number of objects the cache should hold.
  
  @discussion The default value is NSUIntegerMax, which means no limit.
@@ -96,7 +99,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSUInteger countLimit;
 
 /**
- The maximum total cost that the cache can hold before it starts evicting objects.
+ 最大缓存值
  
  @discussion The default value is NSUIntegerMax, which means no limit.
  This is not a strict limit — if the cache goes over the limit, some objects in the
@@ -105,7 +108,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSUInteger costLimit;
 
 /**
- The maximum expiry time of objects in cache.
+ 缓存的最大到期时间
  
  @discussion The default value is DBL_MAX, which means no limit.
  This is not a strict limit — if an object goes over the limit, the objects could
@@ -114,6 +117,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSTimeInterval ageLimit;
 
 /**
+ 如果可用磁盘空间低于此值，将会删除缓存内容
  The minimum free disk space (in bytes) which the cache should kept.
  
  @discussion The default value is 0, which means no limit.
@@ -124,6 +128,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSUInteger freeDiskSpaceLimit;
 
 /**
+ 1分钟检查一次hu俺村是否达到极限，如果是，清除缓存
  The auto trim check time interval in seconds. Default is 60 (1 minute).
  
  @discussion The cache holds an internal timer to check whether the cache reaches
@@ -132,6 +137,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSTimeInterval autoTrimInterval;
 
 /**
+ YES-debug模式下打印错误日志
  Set `YES` to enable error logs for debug.
  */
 @property BOOL errorLogsEnabled;
