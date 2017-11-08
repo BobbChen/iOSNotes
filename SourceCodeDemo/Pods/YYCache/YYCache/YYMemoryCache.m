@@ -124,10 +124,15 @@ static inline dispatch_queue_t YYMemoryCacheGetReleaseQueue() {
 // 将新增的数据结点移动到头部
 - (void)insertNodeAtHead:(_YYLinkedMapNode *)node {
     CFDictionarySetValue(_dic, (__bridge const void *)(node->_key), (__bridge const void *)(node));
+    // 将每个缓存开销累加到总开销上
     _totalCost += node->_cost;
+    
+    // 缓存数加1
     _totalCount++;
     if (_head) {
+        // 将新增的结点的后继指针指向当前链表的头结点
         node->_next = _head;
+        
         _head->_prev = node;
         _head = node;
     } else {
@@ -137,6 +142,7 @@ static inline dispatch_queue_t YYMemoryCacheGetReleaseQueue() {
 
 // 将被访问的数据结点移动到链表的头部
 - (void)bringNodeToHead:(_YYLinkedMapNode *)node {
+    // 如果该结点已经是头结点，直接return
     if (_head == node) return;
     
     if (_tail == node) {
@@ -189,7 +195,7 @@ static inline dispatch_queue_t YYMemoryCacheGetReleaseQueue() {
     if (CFDictionaryGetCount(_dic) > 0) {
         CFMutableDictionaryRef holder = _dic;
         
-        // 清空结点字典
+        // 清空结点字典，分配新的空间
         _dic = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
         
         

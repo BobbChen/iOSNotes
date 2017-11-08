@@ -27,6 +27,10 @@ FOUNDATION_EXPORT const unsigned char YYCacheVersionString[];
 #import "YYKVStorage.h"
 #endif
 
+
+/* NS_ASSUME_NONNULL_BEGIN   NS_ASSUME_NONNULL_END
+   包在其中的默认添加nonnull属性
+ **/
 NS_ASSUME_NONNULL_BEGIN
 
 

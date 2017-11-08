@@ -128,7 +128,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSUInteger freeDiskSpaceLimit;
 
 /**
- 1分钟检查一次hu俺村是否达到极限，如果是，清除缓存
+ 1分钟检查一次缓存是否达到极限，如果是，清除缓存
  The auto trim check time interval in seconds. Default is 60 (1 minute).
  
  @discussion The cache holds an internal timer to check whether the cache reaches
@@ -146,6 +146,8 @@ NS_ASSUME_NONNULL_BEGIN
 ///=============================================================================
 /// @name Initializer
 ///=============================================================================
+
+//UNAVAILABLE_ATTRIBUTE: 禁用该方法 __attribute__((unavailable("alloc方法不可用，请用initWithName:")));
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
 + (instancetype)new UNAVAILABLE_ATTRIBUTE;
 

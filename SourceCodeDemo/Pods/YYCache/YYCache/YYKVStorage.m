@@ -91,7 +91,7 @@ static UIApplication *_YYSharedApplication() {
 
 
 #pragma mark - db
-
+// 判断数据库是否创建
 - (BOOL)_dbOpen {
     if (_db) return YES;
     
@@ -116,6 +116,7 @@ static UIApplication *_YYSharedApplication() {
         return NO;
     }
 }
+
 
 - (BOOL)_dbClose {
     if (!_db) return YES;
@@ -161,6 +162,7 @@ static UIApplication *_YYSharedApplication() {
     return YES;
 }
 
+// 创建表
 - (BOOL)_dbInitialize {
     NSString *sql = @"pragma journal_mode = wal; pragma synchronous = normal; create table if not exists manifest (key text, filename text, size integer, inline_data blob, modification_time integer, last_access_time integer, extended_data blob, primary key(key)); create index if not exists last_access_time_idx on manifest(last_access_time);";
     return [self _dbExecute:sql];
@@ -220,6 +222,7 @@ static UIApplication *_YYSharedApplication() {
     }
 }
 
+// 保存数据到数据库
 - (BOOL)_dbSaveWithKey:(NSString *)key value:(NSData *)value fileName:(NSString *)fileName extendedData:(NSData *)extendedData {
     NSString *sql = @"insert or replace into manifest (key, filename, size, inline_data, modification_time, last_access_time, extended_data) values (?1, ?2, ?3, ?4, ?5, ?6, ?7);";
     sqlite3_stmt *stmt = [self _dbPrepareStmt:sql];
