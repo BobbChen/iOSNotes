@@ -43,9 +43,28 @@
     [self CAShapeLayer_demo];
     
 }
-#pragma mark - CALayer的子类
+#pragma mark - CALayer的子类 - CAShapeLayer
 - (void)CAShapeLayer_demo
 {
+    CAShapeLayer * shapeLayer = [CAShapeLayer layer];
+    UIBezierPath* path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(100, 100, 150, 100) cornerRadius:30];
+    // path和UIBezierPath相互联系，在设置了path之后不要再设置position或bounds
+    shapeLayer.path = path.CGPath;
+    
+    // 填充色
+    shapeLayer.fillColor = [UIColor redColor].CGColor;
+    
+    shapeLayer.fillRule = kCAFillRuleEvenOdd;
+    
+    shapeLayer.strokeColor = [UIColor blackColor].CGColor;
+    shapeLayer.lineWidth = 10;
+    [self.view.layer addSublayer:shapeLayer];
 }
+
+- (void)CAShapeLayer_FillRule_demo
+{
+    
+}
+
 
 @end

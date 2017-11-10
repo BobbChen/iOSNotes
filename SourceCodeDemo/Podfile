@@ -4,6 +4,6 @@ pod 'AFNetworking'
 pod 'SDWebImage'
 pod 'YYWebImage'
 pod 'YYCache'
-
+pod 'YYModel'
 end
 

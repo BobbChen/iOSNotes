@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9865D5F71FB57AE200DD5B7E /* UserObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865D5F61FB57AE200DD5B7E /* UserObject.m */; };
+		9865D5F91FB57D7A00DD5B7E /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 9865D5F81FB57D7A00DD5B7E /* data.json */; };
+		9865D5FB1FB58C5900DD5B7E /* data02.json in Resources */ = {isa = PBXBuildFile; fileRef = 9865D5FA1FB58C5900DD5B7E /* data02.json */; };
 		989BE6581FB163760064C486 /* NetApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 989BE6571FB163760064C486 /* NetApiClient.m */; };
 		989BE65B1FB163970064C486 /* NetDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 989BE65A1FB163970064C486 /* NetDataManager.m */; };
 		98F3C7F41F53AAB500C69BE1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F3C7F31F53AAB500C69BE1 /* main.m */; };
@@ -41,6 +44,10 @@
 		0DEF190B22D735CB885F9C1C /* Pods-SourceCodeDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SourceCodeDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SourceCodeDemo/Pods-SourceCodeDemo.release.xcconfig"; sourceTree = "<group>"; };
 		1C505E1D2370109B8DCA37E1 /* Pods-SourceCodeDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SourceCodeDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SourceCodeDemo/Pods-SourceCodeDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		81A6166C0A4B3B0BE620D046 /* libPods-SourceCodeDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SourceCodeDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9865D5F51FB57AE200DD5B7E /* UserObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserObject.h; sourceTree = "<group>"; };
+		9865D5F61FB57AE200DD5B7E /* UserObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserObject.m; sourceTree = "<group>"; };
+		9865D5F81FB57D7A00DD5B7E /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		9865D5FA1FB58C5900DD5B7E /* data02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data02.json; sourceTree = "<group>"; };
 		989BE6561FB163760064C486 /* NetApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetApiClient.h; sourceTree = "<group>"; };
 		989BE6571FB163760064C486 /* NetApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetApiClient.m; sourceTree = "<group>"; };
 		989BE6591FB163970064C486 /* NetDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetDataManager.h; sourceTree = "<group>"; };
@@ -89,6 +96,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9865D5F41FB57AAC00DD5B7E /* YYModelDemo */ = {
+			isa = PBXGroup;
+			children = (
+				9865D5FA1FB58C5900DD5B7E /* data02.json */,
+				9865D5F81FB57D7A00DD5B7E /* data.json */,
+				9865D5F51FB57AE200DD5B7E /* UserObject.h */,
+				9865D5F61FB57AE200DD5B7E /* UserObject.m */,
+			);
+			path = YYModelDemo;
+			sourceTree = "<group>";
+		};
 		98F3C7E61F53AAB500C69BE1 = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +132,7 @@
 		98F3C7F11F53AAB500C69BE1 /* SourceCodeDemo */ = {
 			isa = PBXGroup;
 			children = (
+				9865D5F41FB57AAC00DD5B7E /* YYModelDemo */,
 				989BE6591FB163970064C486 /* NetDataManager.h */,
 				989BE65A1FB163970064C486 /* NetDataManager.m */,
 				989BE6561FB163760064C486 /* NetApiClient.h */,
@@ -283,6 +302,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9865D5FB1FB58C5900DD5B7E /* data02.json in Resources */,
+				9865D5F91FB57D7A00DD5B7E /* data.json in Resources */,
 				98F3C8021F53AAB500C69BE1 /* LaunchScreen.storyboard in Resources */,
 				98F3C7FF1F53AAB500C69BE1 /* Assets.xcassets in Resources */,
 				98F3C7FD1F53AAB500C69BE1 /* Main.storyboard in Resources */,
@@ -362,6 +383,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				98F3C7FA1F53AAB500C69BE1 /* ViewController.m in Sources */,
+				9865D5F71FB57AE200DD5B7E /* UserObject.m in Sources */,
 				989BE6581FB163760064C486 /* NetApiClient.m in Sources */,
 				98F3C7F71F53AAB500C69BE1 /* AppDelegate.m in Sources */,
 				989BE65B1FB163970064C486 /* NetDataManager.m in Sources */,

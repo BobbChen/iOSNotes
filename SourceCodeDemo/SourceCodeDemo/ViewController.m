@@ -12,6 +12,8 @@
 #import <UIImageView+WebCache.h>
 #import <UIImageView+YYWebImage.h>
 #import "NetDataManager.h"
+#import "UserObject.h"
+#import <YYModel.h>
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -29,7 +31,8 @@
     [self.view addSubview:tableview];
     
     //
-    [self YYCache_demo];
+    [self YYModel_demo2];
+    
     
     
     
@@ -38,6 +41,29 @@
     
     
 }
+#pragma mark - YYModel
+- (void)YYModel_demo
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"data.json" ofType:@""];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    
+    
+    UserObject * model = [UserObject yy_modelWithJSON:data];
+    
+    
+    
+}
+- (void)YYModel_demo2
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"data02.json" ofType:@""];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    Book * model = [Book yy_modelWithJSON:data];
+    
+    NSLog(@"%@",model.bookID);
+    
+    
+}
+
 #pragma mark - YYCache
 - (void)YYCache_demo
 {

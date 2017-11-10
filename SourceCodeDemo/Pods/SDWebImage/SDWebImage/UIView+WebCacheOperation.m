@@ -46,10 +46,8 @@ typedef NSMutableDictionary<NSString *, id> SDOperationsDictionary;
     
     // 根据key获取对应的operation
     id operations = operationDictionary[key];
-    NSLog(@"sd_cancelImageLoadOperationWithKey----%@",key);
     
     if (operations) {
-        
         
         // 判断类型
         if ([operations isKindOfClass:[NSArray class]]) {
