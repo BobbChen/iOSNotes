@@ -9,6 +9,8 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+@property (nonatomic, strong)dispatch_source_t timer;
+
 
 @end
 
@@ -16,7 +18,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self dispatch_Semaphore_demo];
+    
+    NSLog(@"ndkwqndknw");
+    [self disatch_source_t_demo];
     
 //    [self Note1];
 }
@@ -318,7 +322,30 @@
     
     // 开始读取指定的分割文件读取结束会通过block将data传递
 //    dispatch_io_read(<#dispatch_io_t  _Nonnull channel#>, <#off_t offset#>, <#size_t length#>, <#dispatch_queue_t  _Nonnull queue#>, <#^(bool done, dispatch_data_t  _Nullable data, int error)io_handler#>)
+}
+
+
+#pragma mark - disatch_source 精确度高于NSTimer的计时器(需要将其设置为成员变量，局部变量会立刻被释放)
+- (void)disatch_source_t_demo
+{
+    self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
     
+    // intervalInSeconds : 开始时间
+    dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, 3.0 * NSEC_PER_SEC);
+
+    
+    
+    // leewayInSeconds : 间隔时间
+    uint64_t interval = 2.0 * NSEC_PER_SEC;
+
+    dispatch_source_set_timer(self.timer, start, interval, 0);
+    dispatch_source_set_event_handler(self.timer, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"dispatch_source_t");
+
+        });
+    });
+    dispatch_resume(self.timer);
     
 }
 
