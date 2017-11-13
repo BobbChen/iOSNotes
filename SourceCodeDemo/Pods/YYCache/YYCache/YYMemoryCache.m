@@ -472,6 +472,7 @@ static inline dispatch_queue_t YYMemoryCacheGetReleaseQueue() {
     // 通过传入的key查找缓存数据
     _YYLinkedMapNode *node = CFDictionaryGetValue(_lru->_dic, (__bridge const void *)(key));
     NSTimeInterval now = CACurrentMediaTime();
+    
     if (node) {
         _lru->_totalCost -= node->_cost;
         _lru->_totalCost += cost;

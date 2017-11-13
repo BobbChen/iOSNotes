@@ -15,7 +15,7 @@
 #import "StatusOneModel.h"
 #import "NSObject+Conversion.h"
 #import "StatusTwoModel.h"
-
+#import "Person.h"
 
 @interface ViewController ()
 @property (nonatomic, copy) NSString * demoStr;
@@ -44,6 +44,9 @@
     
     // runtime字典转模型
     [self runtimeDictTransitionModel];
+    
+    // 遍历类的属性
+    [self Traverse_demo];
     
     [self runtimeDictTransitionNestedModel];
     
@@ -138,5 +141,15 @@
     StatusOneModel * models = [StatusOneModel modelWithDatadict:dict];
     NSLog(@" --- runtime字典转模型:%@",models.attitudes_count);
     
+}
+- (void)Traverse_demo
+{
+    id personClass = objc_getClass("Person");
+    unsigned int count;
+    objc_property_t * perptoties = class_copyPropertyList(personClass, &count);
+    for (int i = 0; i < count; i ++) {
+        objc_property_t property = perptoties[i];
+        NSLog(@"遍历类的属性--%s:%s\n",property_getName(property),property_getAttributes(property));
+    }
 }
 @end

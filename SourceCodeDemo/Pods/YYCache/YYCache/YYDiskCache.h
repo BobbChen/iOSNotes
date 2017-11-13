@@ -43,12 +43,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
   如果数据量大于20Kb会被存储为文件，否则将会存储在sqlite
- If the object's data size (in bytes) is larger than this value, then object will
- be stored as a file, otherwise the object will be stored in sqlite.
- 
- 0 means all objects will be stored as separated files, NSUIntegerMax means all
- objects will be stored in sqlite. 
- 
  The default value is 20480 (20KB).
  */
 @property (readonly) NSUInteger inlineThreshold;

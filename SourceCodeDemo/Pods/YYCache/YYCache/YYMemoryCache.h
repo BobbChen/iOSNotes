@@ -45,56 +45,24 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) NSUInteger totalCost;
 
 
-#pragma mark - Limit
-///=============================================================================
-/// @name Limit
-///=============================================================================
+#pragma mark - Limit，超过限制之后会自动删除部分缓存内容
 
-/**
- The maximum number of objects the cache should hold.
- 
- @discussion The default value is NSUIntegerMax, which means no limit.
- This is not a strict limit—if the cache goes over the limit, some objects in the
- cache could be evicted later in backgound thread.
- */
+// 缓存对象数量限制
 @property NSUInteger countLimit;
 
-/**
- The maximum total cost that the cache can hold before it starts evicting objects.
- 
- @discussion The default value is NSUIntegerMax, which means no limit.
- This is not a strict limit—if the cache goes over the limit, some objects in the
- cache could be evicted later in backgound thread.
- */
+// 缓存开销数量限制
 @property NSUInteger costLimit;
 
-/**
- The maximum expiry time of objects in cache.
- 
- @discussion The default value is DBL_MAX, which means no limit.
- This is not a strict limit—if an object goes over the limit, the object could 
- be evicted later in backgound thread.
- */
+// 缓存时间限制
 @property NSTimeInterval ageLimit;
 
-/**
- The auto trim check time interval in seconds. Default is 5.0.
- 
- @discussion The cache holds an internal timer to check whether the cache reaches 
- its limits, and if the limit is reached, it begins to evict objects.
- */
+// 自动清理缓存的时间
 @property NSTimeInterval autoTrimInterval;
 
-/**
- If `YES`, the cache will remove all objects when the app receives a memory warning.
- The default value is `YES`.
- */
+// 是否在收到警告立马删除所有缓存
 @property BOOL shouldRemoveAllObjectsOnMemoryWarning;
 
-/**
- If `YES`, The cache will remove all objects when the app enter background.
- The default value is `YES`.
- */
+// 是否在进入后台删除所有缓存
 @property BOOL shouldRemoveAllObjectsWhenEnteringBackground;
 
 /**
@@ -182,30 +150,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeAllObjects;
 
 
-#pragma mark - Trim
-///=============================================================================
-/// @name Trim
-///=============================================================================
+#pragma mark - 三种LRU缓存控制方式：缓存数量、缓存容量、缓存时间
 
-/**
- Removes objects from the cache with LRU, until the `totalCount` is below or equal to
- the specified value.
- @param count  The total count allowed to remain after the cache has been trimmed.
- */
+// 数量
 - (void)trimToCount:(NSUInteger)count;
 
-/**
- Removes objects from the cache with LRU, until the `totalCost` is or equal to
- the specified value.
- @param cost The total cost allowed to remain after the cache has been trimmed.
- */
+// 容量
 - (void)trimToCost:(NSUInteger)cost;
 
-/**
- Removes objects from the cache with LRU, until all expiry objects removed by the
- specified value.
- @param age  The maximum age (in seconds) of objects.
- */
+// 缓存时间
 - (void)trimToAge:(NSTimeInterval)age;
 
 @end

@@ -50,14 +50,24 @@ static NSString *_YYNSStringMD5(NSString *string) {
 static NSMapTable *_globalInstances;
 static dispatch_semaphore_t _globalInstancesLock;
 
+//
 static void _YYDiskCacheInitGlobal() {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _globalInstancesLock = dispatch_semaphore_create(1);
+        
+        
+        /* NSMapTable
+         NSMapTable 是一种可变的类似于NSDicitionary的字典，与其不同点:
+         1.NSDictionary和NSMutableDictionary是通过强引用来保存Key/Value存储
+         2.NSMapTable可以自定义对key/value的内存管理方式
+         **/
         _globalInstances = [[NSMapTable alloc] initWithKeyOptions:NSPointerFunctionsStrongMemory valueOptions:NSPointerFunctionsWeakMemory capacity:0];
     });
 }
 
+
+//根据路径获取缓存数据
 static YYDiskCache *_YYDiskCacheGetGlobal(NSString *path) {
     if (path.length == 0) return nil;
     _YYDiskCacheInitGlobal();
@@ -179,6 +189,7 @@ static void _YYDiskCacheSetGlobal(YYDiskCache *cache) {
     YYDiskCache *globalCache = _YYDiskCacheGetGlobal(path);
     if (globalCache) return globalCache;
     
+    // 如果从NSMapTable中没有获取到缓存，创建YYKVStorageType，冰将创建出来的YYKVStorageType注册进入NSMapTable
     YYKVStorageType type;
     if (threshold == 0) {
         type = YYKVStorageTypeFile;

@@ -31,7 +31,10 @@
     [self.view addSubview:tableview];
     
     //
-    [self YYModel_demo2];
+    [self NSMapTabTable_demo];
+    
+    
+    
     
     
     
@@ -63,6 +66,27 @@
     
     
 }
+
+// NSMapTabTable
+- (void)NSMapTabTable_demo
+{
+    NetDataManager * manager = [NetDataManager shareManager];
+    // NSDictionary或者NSMutableDictionary是用强引用来保存key/Value,其次键值一般使用NSString或者NSNumber（必须遵循NSCoding协议才行），也就是key-to-objec而不能object-to-objec
+    
+//    NSDictionary * dict = [NSDictionary dictionaryWithObjectsAndKeys:@(1),manager, nil];// crash
+
+    // 初始化的时候设置value和key的内存管理类型
+    NSMapTable * mapTabel = [NSMapTable mapTableWithKeyOptions:NSMapTableWeakMemory valueOptions:NSMapTableWeakMemory];
+    [mapTabel setObject:@(1) forKey:manager];
+    NSLog(@"%@",mapTabel);
+    
+    
+    
+    
+
+    
+}
+
 
 #pragma mark - YYCache
 - (void)YYCache_demo

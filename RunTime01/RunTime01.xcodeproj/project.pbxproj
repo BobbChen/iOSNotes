@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9854CCE91FB9797900998E37 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 9854CCE81FB9797900998E37 /* Person.m */; };
 		989EFE4B1FA6B13F00D80393 /* NSObject+Conversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 989EFE4A1FA6B13F00D80393 /* NSObject+Conversion.m */; };
 		989EFE4C1FA6B82400D80393 /* status1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98A93CB91FA2CA030064E418 /* status1.plist */; };
 		989EFE4D1FA6B82C00D80393 /* status2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98A93CBB1FA2CA030064E418 /* status2.plist */; };
@@ -46,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9854CCE71FB9797900998E37 /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		9854CCE81FB9797900998E37 /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		989EFE491FA6B13F00D80393 /* NSObject+Conversion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Conversion.h"; sourceTree = "<group>"; };
 		989EFE4A1FA6B13F00D80393 /* NSObject+Conversion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Conversion.m"; sourceTree = "<group>"; };
 		989EFE4F1FA6C41000D80393 /* StatusTwoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusTwoModel.h; sourceTree = "<group>"; };
@@ -108,6 +111,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9854CCE61FB9794D00998E37 /* 4.遍历对象属性 */ = {
+			isa = PBXGroup;
+			children = (
+				9854CCE71FB9797900998E37 /* Person.h */,
+				9854CCE81FB9797900998E37 /* Person.m */,
+			);
+			path = "4.遍历对象属性";
+			sourceTree = "<group>";
+		};
 		98A93CB81FA2C9FC0064E418 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +193,7 @@
 				98A93CBE1FA2CCB40064E418 /* 1.替换系统方法 */,
 				98A93CBD1FA2CCA50064E418 /* 2.分类添加属性 */,
 				98A93CBC1FA2CC8B0064E418 /* 3.字典转模型 */,
+				9854CCE61FB9794D00998E37 /* 4.遍历对象属性 */,
 				98A93CB81FA2C9FC0064E418 /* Source */,
 				98B54A2B1FA0210F002DF9A2 /* AppDelegate.h */,
 				98B54A2C1FA0210F002DF9A2 /* AppDelegate.m */,
@@ -355,6 +368,7 @@
 				98A93CC11FA2CD860064E418 /* StatusOneModel.m in Sources */,
 				98B54A3B1FA0210F002DF9A2 /* main.m in Sources */,
 				98B54A2D1FA0210F002DF9A2 /* AppDelegate.m in Sources */,
+				9854CCE91FB9797900998E37 /* Person.m in Sources */,
 				989EFE541FA6D90900D80393 /* User.m in Sources */,
 				989EFE511FA6C41000D80393 /* StatusTwoModel.m in Sources */,
 				98A845FD1FA174D100F13AF3 /* NSObject+Property.m in Sources */,
