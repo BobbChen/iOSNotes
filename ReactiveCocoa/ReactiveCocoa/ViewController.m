@@ -11,6 +11,7 @@
 #import "Person.h"
 #import <ReactiveCocoa/RACEXTScope.h>
 #import <ReactiveCocoa/RACDelegateProxy.h>
+#import "SecondViewController.h"
 
 @interface ViewController ()
 @property (nonatomic, strong) Person * person;
@@ -18,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *pwTextFiled;
 @property (weak, nonatomic) IBOutlet UIButton *demoBtn;
 @property (nonatomic, strong) RACDelegateProxy * proxy;
+@property (nonatomic, strong) RACCommand * command;
 
 @end
 
@@ -27,7 +29,7 @@
     [super viewDidLoad];
     self.person = [[Person alloc] init];
     [self kvo_demo];
-    [self RACSignal_demo];
+    [self ractuple_demo];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -148,6 +150,143 @@
     
 }
 #pragma mark - RACSubject
+- (void)racsubject_demo
+{
+    // 创建信号
+    RACSubject * subject = [RACSubject subject];
+
+
+    // 订阅信号
+    [subject subscribeNext:^(id x) {
+        NSLog(@"第一个订阅者:%@",x);
+    }];
+
+    [subject subscribeNext:^(id x) {
+        NSLog(@"第二个订阅者:%@",x);
+    }];
+
+    // RACSubject只能先订阅信号后才能发送信号
+    [subject sendNext:@"1"];
+    
+    
+    
+    // RACReplaySubject可以先发送信号，再订阅信号
+    RACReplaySubject * replaySubject = [RACReplaySubject subject];
+    
+    // 如果想当一个信号被订阅，就重复播放之前所有值，需要先发送信号，在订阅信号
+    [replaySubject sendNext:@1];
+    [replaySubject sendNext:@2];
+
+    [replaySubject subscribeNext:^(id x) {
+        NSLog(@"第一个订阅者:%@",x);
+
+    }];
+    
+    [replaySubject subscribeNext:^(id x) {
+        NSLog(@"第二个订阅者:%@",x);
+
+    }];
+    
+}
+
+#pragma mark - RACSubject替换代理
+
+- (IBAction)pushToSecondViewController:(id)sender {
+    SecondViewController * secVc = [[SecondViewController alloc] init];
+    secVc.delegateSignal = [RACSubject subject];
+    [secVc.delegateSignal subscribeNext:^(id x) {
+        NSLog(@"第二个页面的文本输入框内容是:%@",x);
+    }];
+    [self.navigationController pushViewController:secVc animated:YES];
+    
+}
+
+#pragma mark - RACTuple 和 RACSequence
+- (void)ractuple_demo
+{
+    // RACSequence可以用于代替NSArray,NSDictionary,可以使用它来快速遍历数组和字典
+    NSArray * numArray = @[@1,@2,@3];
+    [numArray.rac_sequence.signal subscribeNext:^(id x) {
+        NSLog(@"数组中的元素分别是:%@",x);
+    }];
+    
+    // 遍历字典
+    NSDictionary * dict = @{@"name":@"张三",@"age":@"21"};
+    [dict.rac_sequence.signal subscribeNext:^(RACTuple * x) {
+        // 解包元祖
+        RACTupleUnpack(NSString * key,NSString * value) = x;
+        NSLog(@"遍历字典:%@:%@",key,value);
+    }];
+}
+
+#pragma mark - RACCommand
+
+- (IBAction)raccommand_demo:(id)sender {
+    
+    
+    //
+    RACCommand * command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        NSLog(@"执行命令");
+        
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            [subscriber sendNext:@"请求数据"];
+            [subscriber sendCompleted];
+            return nil;
+        }];
+        
+    }];
+    _command = command;
+    
+    [command.executionSignals subscribeNext:^(id x) {
+        [x subscribeNext:^(id x) {
+            NSLog(@"%@",x);
+        }];
+    }];
+    
+    [command.executionSignals.switchToLatest subscribeNext:^(id x) {
+        
+        NSLog(@"%@",x);
+    }];
+    
+    // 4.监听命令是否执行完毕,默认会来一次，可以直接跳过，skip表示跳过第一次信号。
+    [[command.executing skip:1] subscribeNext:^(id x) {
+        
+        if ([x boolValue] == YES) {
+            // 正在执行
+            NSLog(@"正在执行");
+            
+        }else{
+            // 执行完成
+            NSLog(@"执行完成");
+        }
+    }];
+    // 5.执行命令
+    [self.command execute:@1];
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

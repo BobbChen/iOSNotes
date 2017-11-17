@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xpx-KY-2Ay">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,19 +19,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Juh-tG-hFo">
-                                <rect key="frame" x="20" y="60" width="335" height="30"/>
+                                <rect key="frame" x="20" y="104" width="335" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gy1-ua-70Q">
-                                <rect key="frame" x="20" y="120" width="335" height="30"/>
+                                <rect key="frame" x="20" y="164" width="335" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLM-dk-F1G">
-                                <rect key="frame" x="20" y="190" width="334" height="30"/>
+                                <rect key="frame" x="20" y="234" width="334" height="30"/>
                                 <color key="backgroundColor" red="0.18641446346329882" green="1" blue="0.61004395169336156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Zcu-P3-Jl8"/>
@@ -40,21 +40,46 @@
                                     <color key="titleColor" red="0.8980392157" green="0.32549019610000002" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Vf-DM-Iv0">
+                                <rect key="frame" x="20" y="304" width="334" height="30"/>
+                                <color key="backgroundColor" red="0.61729600689999997" green="0.98103841150000004" blue="0.9982910156" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="跳转页面"/>
+                                <connections>
+                                    <action selector="pushToSecondViewController:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tbw-iS-6ao"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWi-T3-z8v">
+                                <rect key="frame" x="20" y="364" width="334" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.2618324125" blue="0.1426675728" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="请求网络"/>
+                                <connections>
+                                    <action selector="raccommand_demo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g5h-Vi-Z0s"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Juh-tG-hFo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="0s4-Cs-6oE"/>
+                            <constraint firstItem="4Vf-DM-Iv0" firstAttribute="top" secondItem="FLM-dk-F1G" secondAttribute="bottom" constant="40" id="2EQ-d9-2ex"/>
                             <constraint firstItem="gy1-ua-70Q" firstAttribute="centerX" secondItem="Juh-tG-hFo" secondAttribute="centerX" id="3wh-Sd-tzF"/>
+                            <constraint firstItem="cWi-T3-z8v" firstAttribute="top" secondItem="4Vf-DM-Iv0" secondAttribute="bottom" constant="30" id="50g-aZ-Y7y"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Juh-tG-hFo" secondAttribute="trailing" constant="20" id="6V5-mc-bja"/>
                             <constraint firstItem="FLM-dk-F1G" firstAttribute="centerX" secondItem="gy1-ua-70Q" secondAttribute="centerX" id="F53-Ni-BRR"/>
+                            <constraint firstItem="cWi-T3-z8v" firstAttribute="width" secondItem="4Vf-DM-Iv0" secondAttribute="width" id="FR9-74-Sf4"/>
                             <constraint firstItem="gy1-ua-70Q" firstAttribute="top" secondItem="Juh-tG-hFo" secondAttribute="bottom" constant="30" id="JAi-fA-aMT"/>
+                            <constraint firstItem="4Vf-DM-Iv0" firstAttribute="height" secondItem="FLM-dk-F1G" secondAttribute="height" id="K1e-iM-Be6"/>
                             <constraint firstItem="Juh-tG-hFo" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="MQM-dx-ykX"/>
+                            <constraint firstItem="cWi-T3-z8v" firstAttribute="height" secondItem="4Vf-DM-Iv0" secondAttribute="height" id="PCb-SC-fdB"/>
+                            <constraint firstItem="cWi-T3-z8v" firstAttribute="centerX" secondItem="4Vf-DM-Iv0" secondAttribute="centerX" id="Xc6-OM-VPC"/>
+                            <constraint firstItem="4Vf-DM-Iv0" firstAttribute="width" secondItem="FLM-dk-F1G" secondAttribute="width" id="lXI-BL-8h0"/>
                             <constraint firstItem="FLM-dk-F1G" firstAttribute="leading" secondItem="gy1-ua-70Q" secondAttribute="leading" id="nTM-gt-JcU"/>
                             <constraint firstItem="gy1-ua-70Q" firstAttribute="width" secondItem="Juh-tG-hFo" secondAttribute="width" id="p7f-L0-heT"/>
                             <constraint firstItem="FLM-dk-F1G" firstAttribute="top" secondItem="gy1-ua-70Q" secondAttribute="bottom" constant="40" id="rVO-kf-RAT"/>
+                            <constraint firstItem="4Vf-DM-Iv0" firstAttribute="centerX" secondItem="FLM-dk-F1G" secondAttribute="centerX" id="sMj-xC-JGx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="XNy-W5-rCd"/>
                     <connections>
                         <outlet property="demoBtn" destination="FLM-dk-F1G" id="xHU-yT-vYI"/>
                         <outlet property="demoTextFiled" destination="Juh-tG-hFo" id="vaf-I9-sMe"/>
@@ -63,6 +88,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="476" y="90.404797601199405"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qNw-g5-Mgl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Xpx-KY-2Ay" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aey-ny-tft">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="4vu-HS-R9P"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RGS-k2-jeZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-214.40000000000001" y="-293.25337331334333"/>
         </scene>
     </scenes>
 </document>

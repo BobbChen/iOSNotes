@@ -16,6 +16,8 @@
 		981029021FBD55D1001EFAB2 /* ReactiveCocoaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 981029011FBD55D1001EFAB2 /* ReactiveCocoaTests.m */; };
 		9810290D1FBD55D1001EFAB2 /* ReactiveCocoaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9810290C1FBD55D1001EFAB2 /* ReactiveCocoaUITests.m */; };
 		9810291C1FBD6A42001EFAB2 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 9810291B1FBD6A42001EFAB2 /* Person.m */; };
+		98C4B32D1FBE8AD6001BC70C /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C4B32B1FBE8AD6001BC70C /* SecondViewController.m */; };
+		98C4B32E1FBE8AD6001BC70C /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98C4B32C1FBE8AD6001BC70C /* SecondViewController.xib */; };
 		A319668FAC1B53D7FDADAAF4 /* Pods_ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 529501C4A3D570E42EF90751 /* Pods_ReactiveCocoa.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +60,9 @@
 		9810290E1FBD55D1001EFAB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9810291A1FBD6A42001EFAB2 /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		9810291B1FBD6A42001EFAB2 /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		98C4B32A1FBE8AD6001BC70C /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		98C4B32B1FBE8AD6001BC70C /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		98C4B32C1FBE8AD6001BC70C /* SecondViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +127,9 @@
 				981028F71FBD55D1001EFAB2 /* main.m */,
 				9810291A1FBD6A42001EFAB2 /* Person.h */,
 				9810291B1FBD6A42001EFAB2 /* Person.m */,
+				98C4B32A1FBE8AD6001BC70C /* SecondViewController.h */,
+				98C4B32B1FBE8AD6001BC70C /* SecondViewController.m */,
+				98C4B32C1FBE8AD6001BC70C /* SecondViewController.xib */,
 			);
 			path = ReactiveCocoa;
 			sourceTree = "<group>";
@@ -270,6 +278,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98C4B32E1FBE8AD6001BC70C /* SecondViewController.xib in Resources */,
 				981028F51FBD55D1001EFAB2 /* LaunchScreen.storyboard in Resources */,
 				981028F21FBD55D1001EFAB2 /* Assets.xcassets in Resources */,
 				981028F01FBD55D1001EFAB2 /* Main.storyboard in Resources */,
@@ -353,6 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98C4B32D1FBE8AD6001BC70C /* SecondViewController.m in Sources */,
 				981028ED1FBD55D1001EFAB2 /* ViewController.m in Sources */,
 				981028F81FBD55D1001EFAB2 /* main.m in Sources */,
 				9810291C1FBD6A42001EFAB2 /* Person.m in Sources */,
