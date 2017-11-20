@@ -18,6 +18,10 @@
 		9810291C1FBD6A42001EFAB2 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 9810291B1FBD6A42001EFAB2 /* Person.m */; };
 		98C4B32D1FBE8AD6001BC70C /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C4B32B1FBE8AD6001BC70C /* SecondViewController.m */; };
 		98C4B32E1FBE8AD6001BC70C /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98C4B32C1FBE8AD6001BC70C /* SecondViewController.xib */; };
+		98E6E1341FC2B6FC008FCE7B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98E6E1321FC2B6FC008FCE7B /* LoginViewController.m */; };
+		98E6E1351FC2B6FC008FCE7B /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98E6E1331FC2B6FC008FCE7B /* LoginViewController.xib */; };
+		98E6E13C1FC2BC30008FCE7B /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 98E6E13B1FC2BC30008FCE7B /* Account.m */; };
+		98E6E13F1FC2BC4F008FCE7B /* LoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 98E6E13E1FC2BC4F008FCE7B /* LoginViewModel.m */; };
 		A319668FAC1B53D7FDADAAF4 /* Pods_ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 529501C4A3D570E42EF90751 /* Pods_ReactiveCocoa.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +67,13 @@
 		98C4B32A1FBE8AD6001BC70C /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		98C4B32B1FBE8AD6001BC70C /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		98C4B32C1FBE8AD6001BC70C /* SecondViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondViewController.xib; sourceTree = "<group>"; };
+		98E6E1311FC2B6FC008FCE7B /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		98E6E1321FC2B6FC008FCE7B /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		98E6E1331FC2B6FC008FCE7B /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		98E6E13A1FC2BC30008FCE7B /* Account.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
+		98E6E13B1FC2BC30008FCE7B /* Account.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
+		98E6E13D1FC2BC4F008FCE7B /* LoginViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewModel.h; sourceTree = "<group>"; };
+		98E6E13E1FC2BC4F008FCE7B /* LoginViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +127,7 @@
 		981028E71FBD55D1001EFAB2 /* ReactiveCocoa */ = {
 			isa = PBXGroup;
 			children = (
+				98E6E1361FC2BA4B008FCE7B /* LoginDemo */,
 				981028E81FBD55D1001EFAB2 /* AppDelegate.h */,
 				981028E91FBD55D1001EFAB2 /* AppDelegate.m */,
 				981028EB1FBD55D1001EFAB2 /* ViewController.h */,
@@ -150,6 +162,44 @@
 				9810290E1FBD55D1001EFAB2 /* Info.plist */,
 			);
 			path = ReactiveCocoaUITests;
+			sourceTree = "<group>";
+		};
+		98E6E1361FC2BA4B008FCE7B /* LoginDemo */ = {
+			isa = PBXGroup;
+			children = (
+				98E6E1391FC2BA79008FCE7B /* View */,
+				98E6E1381FC2BA6F008FCE7B /* ViewModel */,
+				98E6E1371FC2BA67008FCE7B /* Model */,
+			);
+			path = LoginDemo;
+			sourceTree = "<group>";
+		};
+		98E6E1371FC2BA67008FCE7B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				98E6E13A1FC2BC30008FCE7B /* Account.h */,
+				98E6E13B1FC2BC30008FCE7B /* Account.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		98E6E1381FC2BA6F008FCE7B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				98E6E13D1FC2BC4F008FCE7B /* LoginViewModel.h */,
+				98E6E13E1FC2BC4F008FCE7B /* LoginViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		98E6E1391FC2BA79008FCE7B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				98E6E1311FC2B6FC008FCE7B /* LoginViewController.h */,
+				98E6E1321FC2B6FC008FCE7B /* LoginViewController.m */,
+				98E6E1331FC2B6FC008FCE7B /* LoginViewController.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		C9A32B2DE762474F0FEA75D4 /* Pods */ = {
@@ -278,6 +328,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98E6E1351FC2B6FC008FCE7B /* LoginViewController.xib in Resources */,
 				98C4B32E1FBE8AD6001BC70C /* SecondViewController.xib in Resources */,
 				981028F51FBD55D1001EFAB2 /* LaunchScreen.storyboard in Resources */,
 				981028F21FBD55D1001EFAB2 /* Assets.xcassets in Resources */,
@@ -362,9 +413,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98E6E13F1FC2BC4F008FCE7B /* LoginViewModel.m in Sources */,
 				98C4B32D1FBE8AD6001BC70C /* SecondViewController.m in Sources */,
 				981028ED1FBD55D1001EFAB2 /* ViewController.m in Sources */,
+				98E6E1341FC2B6FC008FCE7B /* LoginViewController.m in Sources */,
 				981028F81FBD55D1001EFAB2 /* main.m in Sources */,
+				98E6E13C1FC2BC30008FCE7B /* Account.m in Sources */,
 				9810291C1FBD6A42001EFAB2 /* Person.m in Sources */,
 				981028EA1FBD55D1001EFAB2 /* AppDelegate.m in Sources */,
 			);

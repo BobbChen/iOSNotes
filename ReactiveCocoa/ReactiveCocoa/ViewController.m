@@ -12,6 +12,7 @@
 #import <ReactiveCocoa/RACEXTScope.h>
 #import <ReactiveCocoa/RACDelegateProxy.h>
 #import "SecondViewController.h"
+#import "LoginViewController.h"
 
 @interface ViewController ()
 @property (nonatomic, strong) Person * person;
@@ -29,7 +30,7 @@
     [super viewDidLoad];
     self.person = [[Person alloc] init];
     [self kvo_demo];
-    [self ractuple_demo];
+    [self replay_demo];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -52,7 +53,6 @@
 - (void)textFiled_demo
 {
     [[self.demoTextFiled rac_textSignal] subscribeNext:^(id x) {
-        
         self.person.name = x;
     }];
 }
@@ -61,6 +61,10 @@
 - (void)combinTextField_demo
 {
     id signals = @[[self.demoTextFiled rac_textSignal],[self.pwTextFiled rac_textSignal]];
+    
+    
+    
+    
     @weakify(self);
     /* 将两个信号合并
      **/
@@ -223,7 +227,6 @@
 
 - (IBAction)raccommand_demo:(id)sender {
     
-    
     //
     RACCommand * command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         NSLog(@"执行命令");
@@ -265,26 +268,175 @@
     
 }
 
+#pragma mark - RAC信号过滤 - filter
+- (void)racfilter_demo
+{
+    [[self.demoTextFiled.rac_textSignal filter:^BOOL(NSString * value) {
+        return value.length > 3;
+    }] subscribeNext:^(id x) {
+        self.person.name = x;
+    }];
+}
 
+#pragma mark - 忽略完某些值的信号 - ignore
+- (void)racignore_demo
+{
+    // ignoreValues: 忽略所有值
+    
+    [[self.demoTextFiled.rac_textSignal ignore:@"1"] subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    }];
+    
+}
+#pragma mark - distinctUntilChanged 值不同信号
+- (void)distinctUntilChanged_demo
+{
+    [[self.demoTextFiled.rac_textSignal distinctUntilChanged] subscribeNext:^(id x) {
+        NSLog(@"不同于上一个值的是:%@",x);
+    }];
+}
 
+#pragma mark - take 取最后几次信号
+- (void)ractake_demo
+{
+    RACSubject * signal = [RACSubject subject];
+    [[signal take:1] subscribeNext:^(id x) {
+        NSLog(@"取的第一次信号是:%@",x);
+    }];
+    [signal sendNext:@"0"];
+    [signal sendNext:@"1"];
+}
+#pragma mark - takeUntil 获取信号直到某个信号完成
+- (void)takeUntil_demo
+{
+    // rac_willDeallocSignal: 直到当前对象被销毁
+    [self.demoTextFiled.rac_textSignal takeUntil:self.rac_willDeallocSignal];
+}
 
+#pragma mark - skip 跳过几个信号
+- (void)skp_demo
+{
+    [[self.demoTextFiled.rac_textSignal skip:4] subscribeNext:^(id x) {
+        NSLog(@"跳过了4个信号:%@",x);
+    }];
+}
 
+#pragma mark - switchToLatest 获取信号所发送的信号
+- (void)switchToLatest_demo
+{
+    RACSubject * signalofsignal = [RACSubject subject];
+    RACSubject * signal = [RACSubject subject];
+    
+    [signalofsignal.switchToLatest subscribeNext:^(id x) {
+        NSLog(@"信号所发送的信号:%@",x);
+    }];
+    [signalofsignal sendNext:signal];
+    [signal sendNext:@"哈哈"];
+}
+#pragma mark - RAC方法执行顺序
+- (void)signalorder_demo
+{
+    [[[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        [subscriber sendNext:@"这是一个信号"];
+        [subscriber sendCompleted];
+        return nil;
+    }] doNext:^(id x) {
+        NSLog(@"doNext -- 1");
+    }] doCompleted:^{
+        NSLog(@"doCompleted -- 3");
+    }] subscribeNext:^(id x) {
+        NSLog(@"subscribeNext -- 2，接受到信号是:%@",x);
+    }];
+}
+#pragma mark - RAC之线程
+- (void)racdeliverOn_demo
+{
+    RACSignal * signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        NSLog(@"当前的线程--%@",[NSThread currentThread]);
+        
+        [subscriber sendNext:@"1"];
+        [subscriber sendCompleted];
+        return nil;
+    }];
+    
+    /* mainThreadScheduler:主线程
+     scheduler: 子线程
+     **/
+    
+    [[signal deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
+        NSLog(@"信号传递的值:%@--%@",x,[NSThread currentThread]);
+    }];
+}
 
+#pragma mark - timeOut 信号接受超时时间
+- (void)ractimeOut_demo
+{
+    RACSignal * signal = [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        return nil;
+    }] timeout:1 onScheduler:[RACScheduler currentScheduler]];
+    [signal subscribeNext:^(id x) {
+        NSLog(@"接收到的信号:%@",x);
+    } error:^(NSError *error) {
+        NSLog(@"出错了--%@",error);
+    }];
+}
+#pragma mark - interval 定时发送信号
+- (void)interval_demo
+{
+    [[RACSignal interval:1 onScheduler:[RACScheduler currentScheduler]]subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    }];
+    
+}
 
+#pragma mark - delay 延迟发送
+- (void)delay_demo
+{
+    RACSignal * siganl = [[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        [subscriber sendNext:@"1"];
+        [subscriber sendCompleted];
+        return nil;
+    }] delay:2.0] subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    }];
+    
+}
 
+#pragma mark - replay 当一个信号被多次订阅，反复播放内容
+- (void)replay_demo
+{
+    RACSignal * signal = [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        [subscriber sendNext:@"1"];
+        [subscriber sendNext:@"2"];
+        return nil;
+    }] replay];
+    
+    [signal subscribeNext:^(id x) {
+        NSLog(@"1---%@",x);
+    }];
+    
+    [signal subscribeNext:^(id x) {
+        NSLog(@"2---%@",x);
+    }];
 
+}
+#pragma mark - throttle 节流，某个信号发送频繁的时候可以节流，过一段时间获取信号的最新内容发送
+- (void)throttle_demo
+{
+    RACSubject * siganl = [RACSubject subject];
+    // 1s内不接受该信号的内容
+    [[siganl throttle:1] subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    }];
+    
+}
 
-
-
-
-
-
-
-
-
-
-
-
+#pragma mark - MVVM登录界面
+- (IBAction)loginBtn:(UIButton *)sender {
+    LoginViewController * loginVc = [[LoginViewController alloc] init];
+    [self.navigationController pushViewController:loginVc animated:YES];
+    
+}
 
 
 

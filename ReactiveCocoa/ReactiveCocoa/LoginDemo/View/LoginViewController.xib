@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
+            <connections>
+                <outlet property="loginBtn" destination="Gm3-e0-jBA" id="nFn-04-RWS"/>
+                <outlet property="pwTextFiled" destination="Gdv-um-B0R" id="Ovl-hu-gVD"/>
+                <outlet property="userNameTextFiled" destination="Haj-6A-XJl" id="t0c-Ic-7FO"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="账号" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Haj-6A-XJl">
+                    <rect key="frame" x="30" y="90" width="315" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="密码" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gdv-um-B0R">
+                    <rect key="frame" x="30" y="180" width="315" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gm3-e0-jBA">
+                    <rect key="frame" x="30" y="310" width="315" height="30"/>
+                    <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="登录">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.87609370814121479" green="1" blue="0.57033676712506676" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Gdv-um-B0R" firstAttribute="top" secondItem="Haj-6A-XJl" secondAttribute="bottom" constant="60" id="BGB-HN-X6a"/>
+                <constraint firstItem="Gdv-um-B0R" firstAttribute="width" secondItem="Haj-6A-XJl" secondAttribute="width" id="Ght-qb-4t0"/>
+                <constraint firstItem="Gdv-um-B0R" firstAttribute="height" secondItem="Haj-6A-XJl" secondAttribute="height" id="KOu-Aw-f9M"/>
+                <constraint firstItem="Haj-6A-XJl" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="KeB-A1-ZHZ"/>
+                <constraint firstItem="Gm3-e0-jBA" firstAttribute="centerX" secondItem="Gdv-um-B0R" secondAttribute="centerX" id="OF8-jU-v0I"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Haj-6A-XJl" secondAttribute="trailing" constant="30" id="Pij-z7-8dS"/>
+                <constraint firstItem="Gm3-e0-jBA" firstAttribute="width" secondItem="Gdv-um-B0R" secondAttribute="width" id="eWq-7Y-MPl"/>
+                <constraint firstItem="Gdv-um-B0R" firstAttribute="centerX" secondItem="Haj-6A-XJl" secondAttribute="centerX" id="ipu-VM-pzi"/>
+                <constraint firstItem="Gm3-e0-jBA" firstAttribute="height" secondItem="Gdv-um-B0R" secondAttribute="height" id="km1-v3-LW5"/>
+                <constraint firstItem="Gm3-e0-jBA" firstAttribute="top" secondItem="Gdv-um-B0R" secondAttribute="bottom" constant="100" id="nVX-tR-FVQ"/>
+                <constraint firstItem="Haj-6A-XJl" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="70" id="q6q-Ui-M0R"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="34.5" y="124.5"/>
+        </view>
+        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="W3g-fd-UTh">
+            <rect key="frame" x="0.0" y="0.0" width="97" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <nil key="textColor"/>
+            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+            <textInputTraits key="textInputTraits"/>
+        </textField>
+    </objects>
+</document>
