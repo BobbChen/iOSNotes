@@ -192,8 +192,8 @@
     }];
     
 }
-
 #pragma mark - RACSubject替换代理
+
 
 - (IBAction)pushToSecondViewController:(id)sender {
     SecondViewController * secVc = [[SecondViewController alloc] init];
@@ -435,11 +435,7 @@
 - (IBAction)loginBtn:(UIButton *)sender {
     LoginViewController * loginVc = [[LoginViewController alloc] init];
     [self.navigationController pushViewController:loginVc animated:YES];
-    
 }
-
-
-
 
 
 @end

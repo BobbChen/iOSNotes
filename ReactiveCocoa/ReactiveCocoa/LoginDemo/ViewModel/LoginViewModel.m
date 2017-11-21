@@ -8,6 +8,7 @@
 
 #import "LoginViewModel.h"
 #import "Account.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @implementation LoginViewModel
 
