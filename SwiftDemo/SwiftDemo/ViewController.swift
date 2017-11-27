@@ -668,11 +668,40 @@ class ViewController: UIViewController {
     struct FixedLengthRange {
         var firstValue: Int
         let length: Int
+        
         // 只有当调用的时候才会实例化 Lazy 声明的属性
     }
     // 当 rangeOfThreeItems是常量的时，rangeOfThreeItems所有属性都是不可变常量，这和引用类型的类不同
     
+    //MARK: 计算属性
+    struct Point {
+        var x = 0.0, y = 0.0
+    }
+    
+    struct Size {
+        var width = 0.0, height = 0.0
+    }
+    
+    struct Rect {
+        var origin = Point()
+        var size = Size()
+        var center: Point{
+            get{
+                let centerX = origin.x + (size.width / 2)
+                let centerY = origin.y + (size.height / 2)
+                return Point(x: centerX, y: centerY)
+            }
+            set(newCenter) {
+                origin.x = newCenter.x - (size.width / 2)
+                origin.y = newCenter.y - (size.height / 2)
+            }
+
+        }
+        
+    }
+
 }
+
 protocol ExampleProtocol {
     var simpleDescription: String { get }
     mutating func adjust()
@@ -680,7 +709,6 @@ protocol ExampleProtocol {
 extension Int: ExampleProtocol{
     var simpleDescription: String {
         return "The Number \(self)"
-
     }
     mutating func adjust() {
         self += 42
