@@ -54,6 +54,13 @@ struct Resolutions {
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var nextButtonClick: UIButton!
+    
+    @IBAction func nextClick(_ sender: UIButton) {
+        let nextVc = NextViewController()
+        self.navigationController?.pushViewController(nextVc, animated:true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.simpleValue()
