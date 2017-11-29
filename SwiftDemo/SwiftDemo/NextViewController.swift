@@ -15,6 +15,15 @@ class NextViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.red
         
+        let skipButton = UIButton.init(type: .custom)
+        skipButton.frame = CGRect(x: 0, y: 0, width: 200, height: 30);
+        skipButton.setTitle("自动引用计数", for:.normal);
+        skipButton.backgroundColor = UIColor.white;
+        skipButton.setTitleColor(UIColor.black, for: .normal);
+        skipButton.center = view.center
+        view.addSubview(skipButton);
+        skipButton.addTarget(self, action: #selector(self.skipButtonEvent) , for: .touchUpInside);
+        
         //MARK: 11.方法
         let count = Counter()
         count.increment()
@@ -24,16 +33,16 @@ class NextViewController: UIViewController {
         var movePoint = Point(x: 2.0, y: 3.0)
         movePoint.moveByX(deltaX: 3.0, y: 4.0)
         
-        
-        
         someClass.someTypeMethod()
-        
         let animalType = Animal(species: "")
         print("animalType = \(String(describing: animalType))")
-        
-        
-        
     }
+    
+    @objc func skipButtonEvent() {
+        let arcVc = ArcViewController()
+        self.navigationController?.pushViewController(arcVc, animated: true)
+    }
+    
 }
 class Counter {
     var count = 0
@@ -165,11 +174,17 @@ class ShoppingListItem {
 struct Animal {
     let species: String
     // 构造器不支持返回值，return nil 表示构造失败即可
-    init?(species: String) {
+    init!(species: String) {
         if species.isEmpty { return nil}
         self.species = species
     }
 }
+
+
+
+
+
+
 
 
 

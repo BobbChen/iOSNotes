@@ -48,27 +48,27 @@ struct Resolutions {
 }
 
 
-
-
-
-
 class ViewController: UIViewController {
-
-    @IBOutlet weak var nextButtonClick: UIButton!
     
-    @IBAction func nextClick(_ sender: UIButton) {
-        let nextVc = NextViewController()
-        self.navigationController?.pushViewController(nextVc, animated:true)
-    }
+    var dataArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.simpleValue()
 //        self.classDemo()
+        dataArray = ["自动引用计数","可选链","错误处理","类型转换","嵌套类型","扩展","协议","泛型","访问控制","高级运算符"]
+        
         self.closureFunction()
+        self.setTableView()
     }
     
-
+    private func setTableView () {
+        let tableView = UITableView(frame: CGRect(x: 0, y: 20, width: view.frame.size.width, height: view.frame.size.height), style: .plain)
+        tableView.delegate = self
+        tableView.dataSource = self
+        view.addSubview(tableView)
+    }
+    
     func simpleValue(){
         //MARK: 1.常量和变量
         
@@ -720,5 +720,37 @@ extension Int: ExampleProtocol{
     mutating func adjust() {
         self += 42
     }
+}
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        if cell == nil  {
+            cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+        }
+        cell?.textLabel?.text = dataArray[indexPath.row]
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            let arcVc = ArcViewController()
+            self.navigationController?.pushViewController(arcVc, animated: true)
+        case 1:
+            let optionalVc = OptionalChainViewController()
+            self.navigationController?.pushViewController(optionalVc, animated: true)
+        case 2:
+            let errorVc = ErrorHandlViewController()
+            self.navigationController?.pushViewController(errorVc, animated: true)
+        default:
+            print("......")
+        }
+    }
+    
+    
 }
 

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		9864102E1FCBE8AF00DAB782 /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9864102D1FCBE8AF00DAB782 /* NextViewController.swift */; };
+		989758481FCE511F00727EBA /* ArcViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989758471FCE511F00727EBA /* ArcViewController.swift */; };
+		9897584A1FCEAACC00727EBA /* OptionalChainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989758491FCEAACC00727EBA /* OptionalChainViewController.swift */; };
+		9897584C1FCEB06700727EBA /* ErrorHandlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9897584B1FCEB06700727EBA /* ErrorHandlViewController.swift */; };
 		98D015971FC50834004C6BF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D015961FC50834004C6BF6 /* AppDelegate.swift */; };
 		98D015991FC50834004C6BF6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D015981FC50834004C6BF6 /* ViewController.swift */; };
 		98D0159C1FC50834004C6BF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98D0159A1FC50834004C6BF6 /* Main.storyboard */; };
@@ -36,6 +39,9 @@
 
 /* Begin PBXFileReference section */
 		9864102D1FCBE8AF00DAB782 /* NextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
+		989758471FCE511F00727EBA /* ArcViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcViewController.swift; sourceTree = "<group>"; };
+		989758491FCEAACC00727EBA /* OptionalChainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalChainViewController.swift; sourceTree = "<group>"; };
+		9897584B1FCEB06700727EBA /* ErrorHandlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandlViewController.swift; sourceTree = "<group>"; };
 		98D015931FC50834004C6BF6 /* SwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98D015961FC50834004C6BF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98D015981FC50834004C6BF6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -102,10 +108,13 @@
 				98D015961FC50834004C6BF6 /* AppDelegate.swift */,
 				98D015981FC50834004C6BF6 /* ViewController.swift */,
 				98D0159A1FC50834004C6BF6 /* Main.storyboard */,
+				9864102D1FCBE8AF00DAB782 /* NextViewController.swift */,
+				989758471FCE511F00727EBA /* ArcViewController.swift */,
+				989758491FCEAACC00727EBA /* OptionalChainViewController.swift */,
+				9897584B1FCEB06700727EBA /* ErrorHandlViewController.swift */,
 				98D0159D1FC50834004C6BF6 /* Assets.xcassets */,
 				98D0159F1FC50834004C6BF6 /* LaunchScreen.storyboard */,
 				98D015A21FC50834004C6BF6 /* Info.plist */,
-				9864102D1FCBE8AF00DAB782 /* NextViewController.swift */,
 			);
 			path = SwiftDemo;
 			sourceTree = "<group>";
@@ -263,8 +272,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				98D015991FC50834004C6BF6 /* ViewController.swift in Sources */,
+				9897584C1FCEB06700727EBA /* ErrorHandlViewController.swift in Sources */,
 				9864102E1FCBE8AF00DAB782 /* NextViewController.swift in Sources */,
 				98D015971FC50834004C6BF6 /* AppDelegate.swift in Sources */,
+				9897584A1FCEAACC00727EBA /* OptionalChainViewController.swift in Sources */,
+				989758481FCE511F00727EBA /* ArcViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

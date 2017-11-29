@@ -17,32 +17,10 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xSw-2r-3Oq">
-                                <rect key="frame" x="152" y="318.5" width="70" height="30"/>
-                                <color key="backgroundColor" red="0.61729600689999997" green="0.98103841150000004" blue="0.9982910156" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="lK4-rm-Cgn"/>
-                                </constraints>
-                                <state key="normal" title="Next">
-                                    <color key="titleColor" red="0.8980392157" green="0.32549019610000002" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="nextClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="M7k-2v-pQr"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="xSw-2r-3Oq" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="sSW-Rr-jxt"/>
-                            <constraint firstItem="xSw-2r-3Oq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yQO-iQ-amg"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="nWj-rS-Jn1"/>
-                    <connections>
-                        <outlet property="nextButtonClick" destination="xSw-2r-3Oq" id="eFn-tx-VcI"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -64,7 +42,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z76-RH-xMt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="48" y="390.40479760119945"/>
+            <point key="canvasLocation" x="-476" y="322"/>
         </scene>
     </scenes>
 </document>
