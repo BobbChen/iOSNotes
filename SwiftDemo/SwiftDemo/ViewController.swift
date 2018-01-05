@@ -745,6 +745,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             self.navigationController?.pushViewController(optionalVc, animated: true)
         case 2:
             let errorVc = ErrorHandlViewController()
+           
             self.navigationController?.pushViewController(errorVc, animated: true)
         default:
             print("......")
