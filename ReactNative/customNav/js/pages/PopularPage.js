@@ -17,37 +17,68 @@ import ScrollableTabView,{ScrollableTabBar} from 'react-native-scrollable-tab-vi
 import NavBar from '../common/NavBar';
 import NavigationBar from '../../NavigationBar';
 import NetWorkManager from '../common/NetWorkManager';
+import LanguageDao,{FLAG_LANGUAGE} from '../expand/LanguageDao';
 const URL='https://api.github.com/search/repositories?q=';
 const QUERY_STR='&sort=stars';
 
-export default class ListViewDemo extends Component {
+
+export default class PopularPage extends Component {
+    constructor(props){
+        super(props);
+        this.languageDao = new LanguageDao(FLAG_LANGUAGE.flag_key);
+        this.state={
+            languages:[],
+        }
+    }
+
+    componentDidMount(){
+        this.loadData();
+    }
+
+    // 加载保存在数据库的标签
+    loadData(){
+        this.languageDao.fetch()
+            .then(result=>{
+                this.setState({
+                    languages:result
+                })
+            })
+
+    }
+
 
 
     render(){
+        let content = this.state.languages.length>0?
+            <ScrollableTabView
+                // 下划线样式
+                tabBarUnderlineStyle = {{backgroundColor:'#e7e7e7',height:2}}
+
+                // 未选中时候的颜色
+                tabBarInactiveTextColor = "mintcream"
+                // 选中时候的颜色
+                tabBarActiveTextColor="white"
+                tabBarBackgroundColor="#6495ED"
+                renderTabBar={()=><ScrollableTabBar/>}
+            >
+
+                {this.state.languages.map((result,i,arr)=>{
+                    let lan=arr[i];
+                    // 如果订阅了，返回视图
+                    return lan.checked?<PopularTab key={i} tabLabel={lan.name}>{lan.name}</PopularTab>:null;
+                })}
+            </ScrollableTabView>:null;
+
+
+
         return(
             <View style={styles.container}>
                 <NavigationBar
-                    title={'最热'}
+                    title={'DASDNASKDA'}
                     style={{backgroundColor:'#6495ED'}}
                 />
+                {content}
 
-                <ScrollableTabView
-                    // 下划线样式
-                    tabBarUnderlineStyle = {{backgroundColor:'#e7e7e7',height:2}}
-
-                    // 未选中时候的颜色
-                    tabBarInactiveTextColor = "mintcream"
-                    // 选中时候的颜色
-                    tabBarActiveTextColor="white"
-                    tabBarBackgroundColor="#6495ED"
-                    renderTabBar={()=><ScrollableTabBar/>}
-                >
-                    <PopularTab tabLabel="Java">Java</PopularTab>
-                    <PopularTab tabLabel="iOS">iOS</PopularTab>
-                    <PopularTab tabLabel="Android">Android</PopularTab>
-                    <PopularTab tabLabel="JavaScript">JavaScript</PopularTab>
-
-                </ScrollableTabView>
 
                 {/*<Text style={styles.tips} onPress={()=>{
                        this.onLoad()

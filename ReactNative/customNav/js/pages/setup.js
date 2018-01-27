@@ -1,20 +1,28 @@
 /**
  * Created by chenbo on 2018/1/27.
  */
-import React,{Component} from 'react';
+import React, {Component} from 'react'
 import {
-    View,
-    Text,
-    Image,
-    StyleSheet,
-    ListView,
-    TouchableOpacity, // 点击触摸组件
-    RefreshControl, // 刷新
-}from 'react-native';
-function setup() {
-    // 初始化配置
-    class Root extends Component{
 
+} from 'react-native'
+import { Navigator } from'react-native-deprecated-custom-components';
+import WelcomePage from './WelcomePage'
+function setup() {
+    //进行一些初始化配置
+
+    class Root extends Component {
+        renderScene(route, navigator) {
+            let Component = route.component;
+            return <Component {...route.params} navigator={navigator}/>
+        }
+
+        render() {
+            return <Navigator
+                initialRoute={{component: WelcomePage}}
+                renderScene={(route, navigator)=>this.renderScene(route, navigator)}
+            />
+        }
     }
-    return <Root/>
+    return <Root/>;
 }
+module.exports = setup;

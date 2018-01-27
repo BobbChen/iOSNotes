@@ -24,10 +24,18 @@ export default class AsyncStorageTest extends Component{
         })
     }
     onDelete(){
-
+        AsyncStorage.removeItem('KEY',(error)=>{
+            if(!error){
+                this.toast.show('移除成功')
+            }
+        })
     }
     onGet(){
-
+        AsyncStorage.getItem('key',(error,result)=>{
+            if(!error){
+                this.toast.show('取出的内容为:'+result)
+            }
+        })
     }
     render(){
         return <View style={styles.container}>
