@@ -6,12 +6,12 @@
 
 import React, { Component } from 'react';
 import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-
+    Platform,
+    StyleSheet,
+    Text,
+    View,
+    Image,
+    DeviceEventEmitter,
 } from 'react-native';
 import Popular from './Popular'
 import { Navigator } from 'react-native-deprecated-custom-components';
@@ -27,9 +27,15 @@ import Fetch from './Fetch';
 import PropTypes from 'prop-types'; // ES6
 import TabNavigator from 'react-native-tab-navigator';
 import Boy from './Boy';
+import WebViewTest from './WebViewTest';
+import TrendingTest from './TrendingTest';
+
 import PopularPage from './js/pages/PopularPage';
+import TrendingPage from './js/pages/TrendingPage';
 import AsyncStorageTest from './AsyncStorageTest';
 import MyPage from './js/pages/My/MyPage';
+import Toast,{DURATION} from 'react-native-easy-toast';
+
 
 
 export default class App extends Component<{}> {
@@ -40,10 +46,27 @@ export default class App extends Component<{}> {
     }
 
   }
-    render() {
+  componentDidMount(){
+      // 注册一个监听，只要监听到'showToast'标示，就触发对应的事件
+      this.listener=DeviceEventEmitter.addListener('showToast',(text)=>{
+            this.toast.show(text,DURATION.LENGTH_LONG);
 
-    return (
+      });
+
+
+  }
+
+  // 组件移除的时候，移除监听
+  componentWillUnmount(){
+    this.listener&&this.listener.remove();
+  }
+
+  render() {
+
+
+      return (
       <View style={styles.container}>
+
 
           <TabNavigator>
 
@@ -55,7 +78,7 @@ export default class App extends Component<{}> {
               renderSelectedIcon={() => <Image style={[styles.image,{tintColor:'#6495ED'}]} source={require('./res/Images/ic_polular.png')} />}
               onPress={() => this.setState({ selectedTab: 'tab_popular' })}>
               <View style={styles.page1}>
-                <PopularPage/>
+                <PopularPage {...this.props}/>
               </View>
           </TabNavigator.Item>
 
@@ -67,7 +90,7 @@ export default class App extends Component<{}> {
               renderSelectedIcon={() => <Image style={[styles.image,{tintColor:'#6495ED'}] } source={require('./res/Images/ic_trending.png')} />}
               onPress={() => this.setState({ selectedTab: 'tab_trending' })}>
             <View style={styles.page2}>
-              <AsyncStorageTest/>
+              <TrendingPage/>
             </View>
           </TabNavigator.Item>
 
@@ -78,7 +101,10 @@ export default class App extends Component<{}> {
               renderIcon={() => <Image style={styles.image} source={require('./res/Images/ic_favorite.png')} />}
               renderSelectedIcon={() => <Image style={[styles.image,{tintColor:'#6495ED'}] } source={require('./res/Images/ic_favorite.png')} />}
               onPress={() => this.setState({ selectedTab: 'tab_favorite' })}>
-            <View style={styles.page2}></View>
+            <View style={styles.page2}>
+              <WebViewTest {...this.props}/>
+
+            </View>
           </TabNavigator.Item>
 
 
@@ -96,6 +122,8 @@ export default class App extends Component<{}> {
           </TabNavigator.Item>
 
         </TabNavigator>
+        <Toast ref={toast=>this.toast=toast}/>
+
 
 
       </View>
@@ -126,7 +154,7 @@ const styles = StyleSheet.create({
   },
   page2:{
     flex:1,
-    backgroundColor:'green',
+    backgroundColor:'white',
 
   },
   image:{

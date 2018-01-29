@@ -11,22 +11,27 @@ import {
 }from 'react-native';
 import { Navigator } from'react-native-deprecated-custom-components';
 
-export default class HomePageCell extends Component{
+export default class TrendingCell extends Component{
     render(){
         return <TouchableOpacity
             onPress={this.props.onSelect}
             style={styles.container}>
             <View style={styles.cell_container}>
-                <Text style={styles.title}>{this.props.data.full_name}</Text>
+                <Text style={styles.title}>{this.props.data.fullName}</Text>
                 <Text style={styles.description}>{this.props.data.description}</Text>
                 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                     {/*作者*/}
                     <View style={{flexDirection:'row',alignItems:'center'}}>
-                        <Text>作者:</Text>
-                        <Image
-                            style={{height:22,width:22}}
-                            source={{uri:this.props.data.owner.avatar_url}}
-                        />
+                        <Text>Build By:</Text>
+                        {data.contributors.map((result,i,array)=>{
+                            return
+                            <Image
+                                style={{height:22,width:22}}
+                                source={{uri:array[i]}}
+
+                            />
+
+                        })}
                     </View>
 
                     {/*收藏数*/}

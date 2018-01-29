@@ -12,6 +12,7 @@ import {
     RefreshControl, // 刷新
 }from 'react-native';
 import NewManager from './NewManager';
+
 export default class Fetch extends Component<{}> {
     constructor(props){
         super(props);
@@ -28,18 +29,6 @@ export default class Fetch extends Component<{}> {
                     result:(JSON.stringify(result))
                 })
             })
-        // fetch(url)
-        //     .then(response=>response.json())
-        //     .then(result=>{
-        //         this.setState({
-        //             result:JSON.stringify(result)
-        //         })
-        //     })
-        //     .catch(error=>{
-        //         this.setState({
-        //             result:JSON.stringify(error)
-        //         })
-        //     })
     }
 
     // 发送数据
@@ -50,22 +39,7 @@ export default class Fetch extends Component<{}> {
                     result:JSON.stringify(result)
                 })
             })
-        // fetch(url,{
-        //     method:'POST',
-        //     header:{
-        //         'Accept':'applocation/json',
-        //         'Content-Type':'applocation/json'
-        //     },
-        //     body:JSON.stringify(params)
-        // })
-        //     .then(response=>response.json())
-        //     .then(result=>{
-        //         this.setState({
-        //             result:JSON.stringify(result)
-        //         })
-        //     })
     }
-
 
     render() {
 

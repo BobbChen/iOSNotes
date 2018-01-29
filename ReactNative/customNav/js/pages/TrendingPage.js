@@ -14,22 +14,22 @@ import {
     DeviceEventEmitter,
 }from 'react-native';
 import DetailView from './DetailView';
-import HomePageCell from '../common/HomePageCell';
+import TrendingCell from '../common/TrendingCell';
 import ScrollableTabView,{ScrollableTabBar} from 'react-native-scrollable-tab-view'
 import NavBar from '../common/NavBar';
 import { Navigator } from'react-native-deprecated-custom-components';
 import NavigationBar from '../../NavigationBar';
 import NetWorkManager,{FLAG_STORAGE} from '../common/NetWorkManager';
+import GitHubTrending from 'GitHubTrending';
 
 import LanguageDao,{FLAG_LANGUAGE} from '../expand/LanguageDao';
-const URL='https://api.github.com/search/repositories?q=';
-const QUERY_STR='&sort=stars';
+const URL='https://github.com/trending/'
 
 
-export default class PopularPage extends Component {
+export default class TrendingPage extends Component {
     constructor(props){
         super(props);
-        this.languageDao = new LanguageDao(FLAG_LANGUAGE.flag_key);
+        this.languageDao = new LanguageDao(FLAG_LANGUAGE.flag_language);
         this.state={
             languages:[],
         }
@@ -70,7 +70,7 @@ export default class PopularPage extends Component {
                 {this.state.languages.map((result,i,arr)=>{
                     let lan=arr[i];
                     // 如果订阅了，返回视图,注意PopularTab需要延展属性{...this.props}才能实现跳转
-                    return lan.checked?<PopularTab key={i} tabLabel={lan.name} {...this.props}>{lan.name}</PopularTab>:null;
+                    return lan.checked?<TrendingTab key={i} tabLabel={lan.name} {...this.props}>{lan.name}</TrendingTab>:null;
                 })}
             </ScrollableTabView>:null;
 
@@ -79,7 +79,7 @@ export default class PopularPage extends Component {
         return(
             <View style={styles.container}>
                 <NavigationBar
-                    title={'最热'}
+                    title={'Trending'}
                     style={{backgroundColor:'#6495ED'}}
                 />
                 {content}
@@ -87,10 +87,11 @@ export default class PopularPage extends Component {
         )
     }
 }
-class PopularTab extends Component{
+class TrendingTab extends Component{
     constructor(props){
         super(props);
-        this.NetManager = new NetWorkManager(FLAG_STORAGE.flag_popular)
+        this.NetManager = new NetWorkManager(FLAG_STORAGE.flag_trending)
+        this.trending=new GitHubTrending();
         this.state={
             isLoading:false,
             result:'',
@@ -108,9 +109,22 @@ class PopularTab extends Component{
         this.setState({
             isLoading:true
         })
-        let url = URL+this.props.tabLabel+QUERY_STR
+        let url = 'https://github.com/trending/c'
         // 'https://api.github.com/search/repositories?q=ios&sort=stars'
-        this.NetManager.get(url)
+
+        // let url = URL + tabLabel;
+
+        this.trending.fetchTrending(url)
+            .then(result=>{
+                this.setState({
+                    isLoading:false,
+                    dataSource:this.state.dataSource.cloneWithRows(result)
+                })
+            })
+
+
+
+        {/*this.NetManager.get(url)
             .then(result=>{
                 this.setState({
                     isLoading:false,
@@ -125,7 +139,8 @@ class PopularTab extends Component{
                 this.setState({
                     result:JSON.stringify(result)
                 })
-            })
+            })*/}
+
     }
     // 页面跳转
     onClickCell(item){
@@ -141,7 +156,7 @@ class PopularTab extends Component{
 
 
     renderRow(data){
-        return <HomePageCell
+        return <TrendingCell
             onSelect={()=>this.onClickCell(data)}
             key={data.id}
             data = {data}

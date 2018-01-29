@@ -18,10 +18,13 @@ import ViewUtils from '../../util/ViewUtils';
 import NavBar from '../../common/NavBar'
 import LanguageDao,{FLAG_LANGUAGE} from '../../expand/LanguageDao';
 import ChecBox from 'react-native-check-box';
+import ArrayUtil from '../../common/ArrayUtil';
+
 export default class CustomKeyPage extends Component {
     constructor(props){
         super(props);
         this.languageDao=new LanguageDao(FLAG_LANGUAGE.flag_key);
+        this.isRemoveKey=this.props.isRemoveKey;
         this.state={
             dataArray:[]
         }
@@ -47,7 +50,8 @@ export default class CustomKeyPage extends Component {
         return(
             <ChecBox style={{flex:1,padding:10}} onClick={()=>this.onClick(data)}
                      leftText={data.name}
-                     isChecked={data.checked}
+
+                     isChecked={this.isRemoveKey?false:data.checked}
                      checkedImage={<Image style={{tintColor:'#6495ED'}} source={require('./images/ic_check_box.png')} />}
                      unCheckedImage={<Image style={{tintColor:'#6495ED'}} source={require('./images/ic_check_box_outline_blank.png')}/>}
 
@@ -57,7 +61,8 @@ export default class CustomKeyPage extends Component {
 
     // 点击之后修改,将原来
     onClick(data){
-        data.checked = !data.checked;
+        // 如果不是标签移除页面，才进行状态的修改
+        if(!this.isRemoveKey) data.checked = !data.checked;
         for(var i=0,len=this.changeValues.length;i<len;i++){
             let tmp =this.changeValues[i];
             // 如果包换选中的这个，就将次元素移除
@@ -78,6 +83,11 @@ export default class CustomKeyPage extends Component {
             this.props.navigator.pop();
             return;
         }
+
+        for(let i=0,l=this.changeValues.length;i<l;i++){
+            ArrayUtil.remove(this.state.dataArray,this.changeValues[i]);
+        }
+
         this.languageDao.save(this.state.dataArray);
         this.props.navigator.pop();
 
@@ -140,19 +150,21 @@ export default class CustomKeyPage extends Component {
 
 
     render(){
+        let rightButtonTitle =this.isRemoveKey?'移除':'保存';
         let rightButton = <TouchableOpacity
             onPress={()=>this.onSave()}
         >
             <View style={{margin:5}}>
-                <Text style={styles.rightButton}>收藏</Text>
+                <Text style={styles.rightButton}>{rightButtonTitle}</Text>
             </View>
         </TouchableOpacity>
 
+        let title = this.isRemoveKey?'移除标签':'自定义标签';
 
         return(
             <View style={styles.container}>
                 <NavBar
-                    title='自定义标签'
+                    title={title}
                     style={{backgroundColor:'#6495ED'}}
                     leftButton={ViewUtils.getLeftButton(()=>this.onBack())}
                     rightButton={rightButton}

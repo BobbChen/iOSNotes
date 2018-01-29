@@ -20,7 +20,7 @@ export default class ViewUtils{
             onPress={callBack}
         >
         <Image
-            style={{width:26,height:26,tintColor:'yellow'}}
+            style={{width:26,height:26,tintColor:'white'}}
             source={require('../../res/Images/ic_arrow_back_white_36pt.png')}
         />
         </TouchableOpacity>
