@@ -9,6 +9,8 @@ import {
     TouchableOpacity,
     StyleSheet,
 }from 'react-native';
+import HTMLView from 'react-native-htmlview'
+
 import { Navigator } from'react-native-deprecated-custom-components';
 
 export default class TrendingCell extends Component{
@@ -18,27 +20,26 @@ export default class TrendingCell extends Component{
             style={styles.container}>
             <View style={styles.cell_container}>
                 <Text style={styles.title}>{this.props.data.fullName}</Text>
-                <Text style={styles.description}>{this.props.data.description}</Text>
+                <HTMLView
+                    value={this.props.data.description}
+                    onLinkPress={(url)=>{}}
+                />
+
+
+                <Text style={styles.description}>{this.props.data.meta}</Text>
                 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                     {/*作者*/}
                     <View style={{flexDirection:'row',alignItems:'center'}}>
                         <Text>Build By:</Text>
-                        {data.contributors.map((result,i,array)=>{
-                            return
-                            <Image
+                        {this.props.data.contributors.map((result,i,array)=>{
+                            return<Image
+                                key={i}
                                 style={{height:22,width:22}}
                                 source={{uri:array[i]}}
-
                             />
-
                         })}
                     </View>
 
-                    {/*收藏数*/}
-                    <View style={{flexDirection:'row',alignItems:'center'}}>
-                        <Text>收藏数:</Text>
-                        <Text>{this.props.data.stargazers_count}</Text>
-                    </View>
                     <Image style={{width:22,height:22}} source={require('../../res/Images/ic_star.png')}/>
 
                 </View>

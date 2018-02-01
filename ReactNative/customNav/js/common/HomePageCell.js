@@ -12,7 +12,41 @@ import {
 import { Navigator } from'react-native-deprecated-custom-components';
 
 export default class HomePageCell extends Component{
+
+    constructor(props){
+        super(props);
+        this.state={
+            // 标识收藏按钮的选中状态
+            isFavorite:false,
+            favoriteImage:require('../../res/Images/ic_unstar_transparent.png')
+        }
+    }
+
+    // 收藏按钮
+    onPressFavorite(){
+        // 取反
+        this.setFavoriteState(!this.state.isFavorite)
+    }
+    setFavoriteState(isFavorite){
+        this.setState({
+            isFavorite:isFavorite,
+            favoriteImage:isFavorite?require('../../res/Images/ic_star.png'):require('../../res/Images/ic_unstar_transparent.png')
+        })
+
+    }
+
+
+
     render(){
+        let favoriteButton = <TouchableOpacity
+            onPress = {()=>this.onPressFavorite()}
+
+        >
+            <Image
+                style={{width:22,height:22,tintColor:'#2196F3'}}
+                source={this.state.favoriteImage}
+            />
+        </TouchableOpacity>
         return <TouchableOpacity
             onPress={this.props.onSelect}
             style={styles.container}>
@@ -34,7 +68,7 @@ export default class HomePageCell extends Component{
                         <Text>收藏数:</Text>
                         <Text>{this.props.data.stargazers_count}</Text>
                     </View>
-                    <Image style={{width:22,height:22}} source={require('../../res/Images/ic_star.png')}/>
+                    {favoriteButton}
 
                 </View>
             </View>

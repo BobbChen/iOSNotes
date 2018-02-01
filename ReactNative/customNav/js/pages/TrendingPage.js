@@ -21,9 +21,12 @@ import { Navigator } from'react-native-deprecated-custom-components';
 import NavigationBar from '../../NavigationBar';
 import NetWorkManager,{FLAG_STORAGE} from '../common/NetWorkManager';
 import GitHubTrending from 'GitHubTrending';
-
+import TimeSpan from '../model/TimeSpan';
 import LanguageDao,{FLAG_LANGUAGE} from '../expand/LanguageDao';
+import Popover from  '../common/Popover';
 const URL='https://github.com/trending/'
+var timeSpanTextArray = [new TimeSpan('今天','since=daily'),new TimeSpan('本周','since=weekly'),new TimeSpan('今天','since=monthly')];
+
 
 
 export default class TrendingPage extends Component {
@@ -50,9 +53,47 @@ export default class TrendingPage extends Component {
 
     }
 
+    showPopover() {
+        this.refs.button.measure((ox, oy, width, height, px, py) => {
+            this.setState({
+                isVisible: true,
+                buttonRect: {x: px, y: py, width: width, height: height}
+            });
+        });
+    }
+
+
+    renderPopView(){
+        return <View>
+            <TouchableOpacity
+                ref = 'button'
+                onPress={()=>this.showPopover()}
+            >
+                <View style={{flexDirection:'row',alignItems:'center'}}>
+                    <Text
+                        style={{
+                           fontSize:18,
+                           color:'white',
+                           fontWeight:'400',
+                        }}
+                    >
+                        趋势
+                    </Text>
+                    <Image
+                        style={{width:12,height:12,marginLeft:5}}
+                        source={require('../../res/Images/ic_spinner_triangle.png')}
+                    />
+
+                </View>
+            </TouchableOpacity>
+
+        </View>
+    }
+
 
 
     render(){
+
 
         let content = this.state.languages.length>0?
             <ScrollableTabView
@@ -76,13 +117,16 @@ export default class TrendingPage extends Component {
 
 
 
+
         return(
             <View style={styles.container}>
                 <NavigationBar
-                    title={'Trending'}
+                    // 自定义弹出视图
+                    titleView={this.renderPopView()}
                     style={{backgroundColor:'#6495ED'}}
                 />
                 {content}
+
             </View>
         )
     }
@@ -110,10 +154,6 @@ class TrendingTab extends Component{
             isLoading:true
         })
         let url = 'https://github.com/trending/c'
-        // 'https://api.github.com/search/repositories?q=ios&sort=stars'
-
-        // let url = URL + tabLabel;
-
         this.trending.fetchTrending(url)
             .then(result=>{
                 this.setState({
@@ -121,26 +161,6 @@ class TrendingTab extends Component{
                     dataSource:this.state.dataSource.cloneWithRows(result)
                 })
             })
-
-
-
-        {/*this.NetManager.get(url)
-            .then(result=>{
-                this.setState({
-                    isLoading:false,
-                    // 将数据和DataSource进行关联
-                    dataSource:this.state.dataSource.cloneWithRows(result.items)
-                })
-                // 发送通知，显示Tosat
-                DeviceEventEmitter.emit('showToast','获取到了数据');
-            })
-
-            .catch(error=>{
-                this.setState({
-                    result:JSON.stringify(result)
-                })
-            })*/}
-
     }
     // 页面跳转
     onClickCell(item){

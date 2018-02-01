@@ -12,15 +12,17 @@ import {
 }from 'react-native';
 import NavBar from '../common/NavBar';
 import ViewUtils from '../util/ViewUtils';
-
+const TRENDING_URL = 'https://github.com/'
 const URL='http://www.baidu.com';
+
 
 export default class DetailView extends Component{
     constructor(props){
         super(props);
         // 获取上个页面传来的url
-        this.url=this.props.data.html_url;
-        let title = this.props.data.full_name;
+        this.url=this.props.data.html_url?this.props.data.html_url:TRENDING_URL+this.props.data.fullName;
+        let title = this.props.data.full_name?this.props.data.full_name:this.props.data.fullName;
+
         this.state={
             url:this.url,
             title:title,

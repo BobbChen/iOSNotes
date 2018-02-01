@@ -20,8 +20,12 @@ export default class NetWorkManager{
         return new Promise((resolve, reject)=>{
             if(this.flag===FLAG_STORAGE.flag_trending){
                 this.trending.fetchTrending(url)
+                    .then(response=>response.json())
                     .then(result=>{
-                        resolve(JSON.stringify(result));
+                        resolve(result);
+                    })
+                    .catch(error=>{
+                        reject(error);
                     })
             }else
             {

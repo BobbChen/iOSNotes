@@ -20,7 +20,7 @@ import NavBar from '../common/NavBar';
 import { Navigator } from'react-native-deprecated-custom-components';
 import NavigationBar from '../../NavigationBar';
 import NetWorkManager,{FLAG_STORAGE} from '../common/NetWorkManager';
-
+import ProjectModel from '../model/ProjectModel';
 import LanguageDao,{FLAG_LANGUAGE} from '../expand/LanguageDao';
 const URL='https://api.github.com/search/repositories?q=';
 const QUERY_STR='&sort=stars';
@@ -104,6 +104,24 @@ class PopularTab extends Component{
         this.loadData();
     }
 
+    // 数据处理
+    flushFavoriteState(){
+        let projectModels=[];
+        let items = this.items;
+        for(var i=0,len=items.length;i<len;i++){
+            projectModels.push(new ProjectModel(items[i]),false);
+        }
+        this.updateState({
+            isLoading:false,
+            dataSource:this.getDataSource(projectModels),
+        })
+    }
+
+    updateState(dic){
+        if(!this)return;
+        this.setState(dic);
+    }
+
     loadData(){
         this.setState({
             isLoading:true
@@ -112,6 +130,9 @@ class PopularTab extends Component{
         // 'https://api.github.com/search/repositories?q=ios&sort=stars'
         this.NetManager.get(url)
             .then(result=>{
+                // this.items = result.items;
+                // 进行数据处理
+                // this.flushFavoriteState();
                 this.setState({
                     isLoading:false,
                     // 将数据和DataSource进行关联
@@ -140,9 +161,11 @@ class PopularTab extends Component{
     }
 
 
+    // 传入数据模型ProjectModel
     renderRow(data){
         return <HomePageCell
             onSelect={()=>this.onClickCell(data)}
+
             key={data.id}
             data = {data}
         />
