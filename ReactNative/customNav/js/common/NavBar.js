@@ -24,7 +24,6 @@ const StatusBarShape={
 }
 export default class NavBar extends Component {
     static propTypes={
-        style:View.propTypes.style,
         title:PropTypes.string,
         titleView:PropTypes.element,
         hide:PropTypes.bool,

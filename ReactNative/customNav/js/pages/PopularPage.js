@@ -139,7 +139,7 @@ class PopularTab extends Component{
                     dataSource:this.state.dataSource.cloneWithRows(result.items)
                 })
                 // 发送通知，显示Tosat
-                DeviceEventEmitter.emit('showToast','获取到了数据');
+                DeviceEventEmitter.emit('showToast','从网上拉取数据！');
             })
 
             .catch(error=>{

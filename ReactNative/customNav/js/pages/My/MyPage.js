@@ -22,13 +22,41 @@ import {MORE_MENU} from '../../common/MoreMenu';
 import GlobalStyles from '../../../res/styles/GlobalStyles';
 import ViewUtils from '../../util/ViewUtils';
 import AboutPage from '../About/AboutPage';
-
+import CustomTheme from './CustomTheme';
+import codePush from 'react-native-code-push';
 
 export default class MyPage extends Component {
     constructor(props){
         super(props);
         // this.pushCustomPage = this.pushCustomPage.bind(this);
+        this.state={
+            customViewVisible:false
+        }
     }
+
+    renderCustomThemeView(){
+        return(<CustomTheme
+            visible={this.state.customViewVisible}
+            {...this.props}
+            onClose={()=>this.setState({customViewVisible:false})}
+        />)
+    }
+
+    // 检查更新
+    update(){
+        codePush.sync({
+            // 用于弹出更新提示框
+            updateDialog: {
+                appendReleaseDescription: true,
+                descriptionPrefix:'\n\n更新内容：\n',
+                title:'更新',
+                mandatoryUpdateMessage:'',
+                mandatoryContinueButtonLabel:'更新',
+            },
+            mandatoryInstallMode:codePush.InstallMode.IMMEDIATE,
+        });
+    }
+
     pushRemoveCustomPage(){
         var route={
             component:CustomKeyPage,
@@ -90,14 +118,17 @@ export default class MyPage extends Component {
                 break;
 
             case MORE_MENU.Custom_Theme:
-                TargetComponent=CustomKeyPage;
+                this.setState({customViewVisible:true})
                 break;
             case MORE_MENU.About_Author:
-                TargetComponent=AboutPage;
+                this.update();
                 break;
 
             case MORE_MENU.About:
-                TargetComponent=AboutPage;
+                this.update();
+                break;
+            case '更新':
+                this.update();
                 break;
 
         }
@@ -120,6 +151,7 @@ export default class MyPage extends Component {
         return (ViewUtils.getSettingItem(()=>this.onClick(tag),icon,text,'#6495ED',null))
     }
 
+
     render(){
         <Navigator
             initialRoute={{component: MyPage}}
@@ -127,7 +159,7 @@ export default class MyPage extends Component {
 
         />
         return(
-            <View style={GlobalStyles.root_container}>
+            <View style={styles.container}>
                 <NavBar
                     title='我的'
                     style={{backgroundColor:'#6495ED'}}
@@ -211,12 +243,14 @@ export default class MyPage extends Component {
                         require('./images/ic_insert_emoticon.png'),
                         '关于作者',
                     )}
+                    <View style={GlobalStyles.lineStyle}/>
+                    {this.getItems(
+                        '更新',
+                        require('./images/ic_insert_emoticon.png'),
+                        '检查更新',
+                    )}
                 </ScrollView>
-
-
-
-
-
+                {this.renderCustomThemeView()}
             </View>
         )
     }

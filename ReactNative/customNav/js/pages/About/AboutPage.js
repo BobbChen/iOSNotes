@@ -16,7 +16,10 @@ import {
     Dimensions,
     Platform,
 }from 'react-native';
+import {MORE_MENU} from '../../common/MoreMenu';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
+import GlobalStyles from '../../../res/styles/GlobalStyles';
+
 import ViewUtils from '../../util/ViewUtils';
 
 
@@ -24,6 +27,37 @@ import ViewUtils from '../../util/ViewUtils';
 export default class AboutPage extends Component {
     constructor(props) {
         super(props);
+    }
+
+    // cell点击事件
+    onClick(tag){
+        /**
+         * TargetComponent:跳转的组件
+         * params:传递的参数
+         */
+        let TargetComponent,params={...this.props,menuType:tag}
+        switch (tag){
+            case MORE_MENU.About_Author:
+                break;
+            case MORE_MENU.WebSite:
+                break;
+            case MORE_MENU.FeedBack:
+                break;
+
+        }
+        if(TargetComponent){
+            var route={
+                component:TargetComponent,
+                params:{
+                    ...this.props,
+                    // 根据isRemove来判断是否是移除标签
+                    isRemoveKey:false
+                }
+            };
+            this.props.navigator.push(route);
+        }
+
+
     }
     getParallaxConfig(params){
         let config={}
@@ -78,13 +112,21 @@ export default class AboutPage extends Component {
 
         });
         let conetnt=<View>
-            {ViewUtils.getSettingItem()}
+            {ViewUtils.getSettingItem(()=>this.onClick,require('../../../res/Images/ic_computer.png'),MORE_MENU.WebSite,'#2196F3')}
+            <View style={GlobalStyles.lineStyle}/>
+            {ViewUtils.getSettingItem(()=>this.onClick,require('../My/images/ic_insert_emoticon.png'),MORE_MENU.About_Author,'#2196F3')}
+            <View style={GlobalStyles.lineStyle}/>
+            {ViewUtils.getSettingItem(()=>this.onClick,require('../../../res/Images/ic_feedback.png'),MORE_MENU.FeedBack,'#2196F3')}
+
+
+
 
         </View>
         return (
           <ParallaxScrollView
 
             headerBackgroundColor="#333"
+            backgroundColor="#2196F3"
             stickyHeaderHeight={ STICKY_HEADER_HEIGHT }
             parallaxHeaderHeight={ PARALLAX_HEADER_HEIGHT }
             backgroundSpeed={10}

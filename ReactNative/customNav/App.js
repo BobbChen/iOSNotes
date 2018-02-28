@@ -38,6 +38,7 @@ import Toast,{DURATION} from 'react-native-easy-toast';
 
 
 
+
 export default class App extends Component<{}> {
   constructor(props){
     super(props);
@@ -47,6 +48,8 @@ export default class App extends Component<{}> {
 
   }
   componentDidMount(){
+
+
       // 注册一个监听，只要监听到'showToast'标示，就触发对应的事件
       this.listener=DeviceEventEmitter.addListener('showToast',(text)=>{
             this.toast.show(text,DURATION.LENGTH_LONG);

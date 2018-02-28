@@ -2,12 +2,16 @@
  * Created by chenbo on 2018/1/27.
  */
 import React, {Component} from 'react';
+
 import {
     View,
     StyleSheet,
     Text,
 } from 'react-native'
 import NavigationBar from '../common/NavBar'
+import codePush from 'react-native-code-push';
+
+
 import App from '../../App'
 export default class WelcomePage extends Component {
     constructor(props) {
@@ -15,6 +19,9 @@ export default class WelcomePage extends Component {
     }
 
     componentDidMount() {
+        // 热更新检测
+        codePush.sync();
+
         this.timer=setTimeout(()=> {
             this.props.navigator.resetTo({
                 component: App,
