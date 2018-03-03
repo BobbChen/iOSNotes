@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <div style="margin-top: 20px">
+            <h2>JS与OC交互</h2>
+            
+        </div>
+        
+        <div>
+            <button onclick="native.ocLog()">JSExport方式调用OC</button>
+        </div>
+        
+        <div>
+            <b id="label">需要改变的标签</b>
+        
+        </div>
+        
+        
+        <div>
+            <input type="text" name="输入框" id="textFiled" placeholder="请输入要打的文字"/>
+            <button onclick="log(document.getElementById('textFiled').value)">打印js文本框内容</button>
+        </div>
+        <div>
+            <button onclick="myAction()" style="">点击按钮进入下一个页面</button>
+        </div>
+        
+        <script>
+            function labelAction(obj){
+                document.getElementById("label").innerHTML = obj;
+            }
+            
+            
+            var call = function()
+            {
+                var callInfo = JSON.stringify({"jianshu": "http://www.jianshu.com/users/55c8fdc3c6e7/latest_articles"});
+                tianbai.getCall(callInfo);
+            }
+        
+        var Callback = function(str)
+        {
+            alert(str);
+        }
+        var alerCallback = function()
+        {
+            alert('成功');
+        }
+        </script>
+    </body>
+</html>
+
