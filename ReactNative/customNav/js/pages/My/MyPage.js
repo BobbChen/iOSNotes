@@ -121,11 +121,10 @@ export default class MyPage extends Component {
                 this.setState({customViewVisible:true})
                 break;
             case MORE_MENU.About_Author:
-                this.update();
+                TargetComponent=AboutPage;
                 break;
-
             case MORE_MENU.About:
-                this.update();
+                TargetComponent=AboutPage;
                 break;
             case '更新':
                 this.update();
@@ -204,7 +203,6 @@ export default class MyPage extends Component {
                         '语言排序',
                     )}
 
-
                     {/*标签管理*/}
                     <Text style={styles.groupTitle}>标签管理</Text>
                     <View style={GlobalStyles.lineStyle}/>
@@ -241,7 +239,7 @@ export default class MyPage extends Component {
                     {this.getItems(
                         MORE_MENU.About_Author,
                         require('./images/ic_insert_emoticon.png'),
-                        '关于作者',
+                        '关于谁谁谁',
                     )}
                     <View style={GlobalStyles.lineStyle}/>
                     {this.getItems(

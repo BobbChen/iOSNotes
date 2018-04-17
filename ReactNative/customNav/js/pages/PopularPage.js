@@ -44,12 +44,7 @@ export default class PopularPage extends Component {
         this.languageDao.fetch()
             .then(result=>{
                 this.setState({
-                    languages:result
-                })
-            })
-
-    }
-
+                    langua
 
 
     render(){

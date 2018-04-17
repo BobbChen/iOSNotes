@@ -33,7 +33,6 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"改变" style:UIBarButtonItemStyleDone target:self action:@selector(changeWebTxet)];
     
-    
     self.WebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
     NSString * path = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"];
     NSURL* url = [NSURL fileURLWithPath:path];

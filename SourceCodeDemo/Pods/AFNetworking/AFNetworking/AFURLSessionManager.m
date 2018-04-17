@@ -608,6 +608,7 @@ static NSString * const AFNSURLSessionTaskDidSuspendNotification = @"com.alamofi
 
     [self.lock lock];
     self.mutableTaskDelegatesKeyedByTaskIdentifier[@(task.taskIdentifier)] = delegate;
+    // 为代理设置进度监听
     [delegate setupProgressForTask:task];
     [self addNotificationObserverForTask:task];
     [self.lock unlock];
@@ -619,6 +620,7 @@ static NSString * const AFNSURLSessionTaskDidSuspendNotification = @"com.alamofi
              completionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler
 {
     AFURLSessionManagerTaskDelegate *delegate = [[AFURLSessionManagerTaskDelegate alloc] init];
+    // weak 不存在循环引用
     delegate.manager = self;
     delegate.completionHandler = completionHandler;
 
@@ -762,6 +764,8 @@ static NSString * const AFNSURLSessionTaskDidSuspendNotification = @"com.alamofi
                             completionHandler:(nullable void (^)(NSURLResponse *response, id _Nullable responseObject,  NSError * _Nullable error))completionHandler {
 
     __block NSURLSessionDataTask *dataTask = nil;
+    
+    // url_session_manager_create_task_safely：防止iOS 8以下的dataTaskWithRequest会并发创建task，导致taskIdentifiers不一致
     url_session_manager_create_task_safely(^{
         dataTask = [self.session dataTaskWithRequest:request];
     });
