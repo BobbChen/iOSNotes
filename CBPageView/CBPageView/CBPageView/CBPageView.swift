@@ -15,6 +15,7 @@ class CBPageView: UIView {
     fileprivate var parentVc: UIViewController
     fileprivate var titleStyle: CBTitleStyle
     
+    
     fileprivate var titleView : CBTitleView!
     
     /// 初始化CHPageView
@@ -49,7 +50,7 @@ extension CBPageView{
     
     fileprivate func setTitleView() {
         let titleViewFrame = CGRect(x: 0, y: 0, width: bounds.width, height: titleStyle.titleViewH)
-        titleView = CBTitleView(frame: titleViewFrame, titles: titles)
+        titleView = CBTitleView(frame: titleViewFrame, titles: titles, style: titleStyle)
         titleView.backgroundColor = UIColor.randomColor()
         addSubview(titleView)
         
@@ -58,6 +59,7 @@ extension CBPageView{
         let contentViewFrame = CGRect(x: 0, y: titleView.frame.maxY, width: bounds.width, height: bounds.height - titleView.bounds.height)
         let contentView = CBContentView(frame: contentViewFrame, childVcs: childVcs, parentVc: parentVc)
         contentView.backgroundColor = UIColor.randomColor()
+        titleView.delegate = contentView
         addSubview(contentView)
     }
 }

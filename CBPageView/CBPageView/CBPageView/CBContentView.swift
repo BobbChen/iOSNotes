@@ -74,4 +74,11 @@ extension CBContentView : UICollectionViewDataSource {
         return cell
      }
 }
+// MARK: - CBTitleViewDlegate
+extension CBContentView : CBPageViewDelegate{
+    func pageView(_ pageView: CBTitleView, targetIndex: NSInteger) {
+        let indexPath  =  IndexPath(item: targetIndex, section: 0)
+        titleCollectionView.scrollToItem(at: indexPath, at: .left, animated: false)
+    }
+}
 
