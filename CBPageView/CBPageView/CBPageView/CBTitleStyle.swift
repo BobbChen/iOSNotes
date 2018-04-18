@@ -10,8 +10,8 @@ import UIKit
 
 class CBTitleStyle {
     var titleViewH : CGFloat = 44.0
-    var normalColor : UIColor = .black
-    var selectColor : UIColor = .orange
+    var normalColor : UIColor = UIColor(r: 0, g: 0, b: 0)
+    var selectColor : UIColor = UIColor(r: 255, g: 127, b: 0)
     var normalFont : CGFloat = 17.0
     
     // 是否可以滚动

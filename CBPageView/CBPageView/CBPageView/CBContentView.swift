@@ -8,10 +8,23 @@
 
 import UIKit
 private let kContentCellID = "kContentCellID"
+
+protocol CBContentViewDelegate: class {
+    func contentView(_ contentView: CBContentView, targetIndex: Int)
+    func contentView(_ contentView : CBContentView, targetIndex : NSInteger, progress: CGFloat)
+
+}
+
 class CBContentView: UIView {
     fileprivate var childVcs: [UIViewController]
     fileprivate var parentVc: UIViewController
+    
+    // 初始偏移值
+    fileprivate var startOffSetX: CGFloat = 0
+    
     // 懒加载
+    weak var delegate: CBContentViewDelegate?
+    
     fileprivate lazy var titleCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -21,6 +34,7 @@ class CBContentView: UIView {
         layout.itemSize = self.bounds.size
         let titleCollectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
         titleCollectionView.dataSource = self
+        titleCollectionView.delegate = self
         titleCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: kContentCellID)
         
         return titleCollectionView
@@ -55,7 +69,7 @@ extension CBContentView{
 
 
 
-// MARK - UICollectionViewDelegate && UICollectionViewDataSource
+// MARK -  UICollectionViewDataSource
 extension CBContentView : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -74,6 +88,70 @@ extension CBContentView : UICollectionViewDataSource {
         return cell
      }
 }
+
+// MARK - UICollectionViewDelegate
+extension CBContentView: UICollectionViewDelegate {
+    // 停止减速
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        contentViewEndScroll()
+    }
+    // 结束拖动
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        // 如果没有减速过程
+        if !decelerate {
+            contentViewEndScroll()
+        }
+    }
+    // 开始拖拽 将此刻的偏移量记录下来，用来进行比较而判断左划右滑
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        startOffSetX = scrollView.contentOffset.x
+
+    }
+    
+    // 将滑动的进度delegate出去
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // 如果相等 return 因为未发生偏移
+        guard startOffSetX != scrollView.contentOffset.x else {
+            return
+        }
+        var targetIndex = 0
+        var progress: CGFloat = 0
+        
+        if startOffSetX < scrollView.contentOffset.x {
+            // 左划
+            targetIndex = Int(startOffSetX / titleCollectionView.bounds.width) + 1
+            if targetIndex > (childVcs.count - 1) {
+                targetIndex = childVcs.count - 1
+            }
+            progress = (scrollView.contentOffset.x - startOffSetX) / titleCollectionView.bounds.width
+            
+            
+        }else{
+            // 右划
+            targetIndex = Int(startOffSetX / titleCollectionView.bounds.width) - 1
+            // 一定要判断是否越界
+            if targetIndex < 0 {
+                targetIndex = 0
+            }
+            progress = (startOffSetX - scrollView.contentOffset.x) / titleCollectionView.bounds.width
+        }
+        delegate?.contentView(self, targetIndex: targetIndex, progress: progress)
+        
+    }
+    
+    
+    
+    private func contentViewEndScroll() {
+        let currentIndex = Int(titleCollectionView.contentOffset.x / titleCollectionView.bounds.width)
+        delegate?.contentView(self, targetIndex: currentIndex)
+    }
+    
+    
+    
+    
+}
+
+
 // MARK: - CBTitleViewDlegate
 extension CBContentView : CBPageViewDelegate{
     func pageView(_ pageView: CBTitleView, targetIndex: NSInteger) {

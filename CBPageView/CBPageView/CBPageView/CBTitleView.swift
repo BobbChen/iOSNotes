@@ -9,7 +9,6 @@
 import UIKit
 protocol CBPageViewDelegate: class {
     func pageView(_ pageView : CBTitleView, targetIndex : NSInteger)
-    
 }
 
 
@@ -100,14 +99,21 @@ extension CBTitleView {
     @objc fileprivate func tapTitleLabelEvent(_ tapGes : UITapGestureRecognizer){
         
         let targetLabel = tapGes.view as! UILabel
-        let preLabel = titleLabelArray[currentIndex]
-        targetLabel.textColor = style.selectColor
-        preLabel.textColor = style.normalColor
-        currentIndex = targetLabel.tag
+        
+        adjustTitleLabel(targetIndex: targetLabel.tag)
         
         // 代理
         delegate?.pageView(self, targetIndex: targetLabel.tag)
         
+        
+    }
+    
+    fileprivate func adjustTitleLabel(targetIndex: Int) {
+        let targetLabel = titleLabelArray[targetIndex]
+        let preLabel = titleLabelArray[currentIndex]
+        preLabel.textColor = style.normalColor
+        targetLabel.textColor = style.selectColor
+        currentIndex = targetLabel.tag
         // 调整位置
         if style.isScrollEnable {
             var offSet = targetLabel.center.x - scrollView.bounds.width * 0.5
@@ -123,6 +129,31 @@ extension CBTitleView {
             
             scrollView.setContentOffset(CGPoint(x: offSet, y: 0), animated: true)
         }
+
+
+    }
+}
+
+extension CBTitleView: CBContentViewDelegate {
+    func contentView(_ contentView: CBContentView, targetIndex: Int) {
+        adjustTitleLabel(targetIndex: targetIndex)
+    }
+    func contentView(_ contentView: CBContentView, targetIndex: NSInteger, progress: CGFloat) {
+        print(targetIndex)
+        print(progress)
+        
+        let targetLabel = titleLabelArray[targetIndex]
+        let preLabel = titleLabelArray[currentIndex]
+
+        
+        // 颜色渐变
+        let detaRGB = UIColor.getRGBDelta(style.selectColor, style.normalColor)
+        let selctRGB = style.selectColor.getRGB()
+        let normalRGB = style.normalColor.getRGB()
+        
+        targetLabel.textColor = UIColor(r: normalRGB.0 + selctRGB.0 * progress, g: normalRGB.1 + selctRGB.1 * progress, b: normalRGB.2 + selctRGB.2 * progress)
+        preLabel.textColor = UIColor(r:selctRGB.0 - detaRGB.0 * progress , g: selctRGB.1 - detaRGB.1 * progress, b: selctRGB.2 - detaRGB.2 * progress)
+        
         
     }
 }

@@ -60,6 +60,7 @@ extension CBPageView{
         let contentView = CBContentView(frame: contentViewFrame, childVcs: childVcs, parentVc: parentVc)
         contentView.backgroundColor = UIColor.randomColor()
         titleView.delegate = contentView
+        contentView.delegate = titleView
         addSubview(contentView)
     }
 }
